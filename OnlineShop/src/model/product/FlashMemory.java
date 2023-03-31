@@ -44,11 +44,6 @@ public class FlashMemory extends Equipment {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-
-    @Override
     public void setDimensions(double dimensions) {
         super.setDimensions(dimensions);
     }
@@ -110,5 +105,12 @@ public class FlashMemory extends Equipment {
 
     public String getUSB() {
         return USB;
+    }
+
+    @Override
+    public String toString() {
+        return "FlashMemory{" +super.toString()+
+                "USB='" + USB + '\'' +
+                '}';
     }
 }

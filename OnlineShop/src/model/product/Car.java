@@ -50,10 +50,6 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-    @Override
     public String getGoodName() {
         return super.getGoodName();
     }
@@ -99,5 +95,13 @@ public class Car extends Vehicle {
 
     public boolean isAutomatic() {
         return automatic;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +super.toString()+
+                "engineVolume=" + engineVolume +
+                ", automatic=" + automatic +
+                '}';
     }
 }

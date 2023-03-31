@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Pencil extends Stationery {
     private PencilType pencilType;
-    public Pencil(String goodName, double price, int inventory, String country,String pencilType) {
+
+    public Pencil(String goodName, double price, int inventory, String country, String pencilType) {
         super(goodName, price, inventory, country);
-        this.pencilType=PencilType.valueOf(pencilType);
+        this.pencilType = PencilType.valueOf(pencilType);
     }
 
     public void setPencilType(PencilType pencilType) {
@@ -43,10 +44,6 @@ public class Pencil extends Stationery {
         super.setAverageScore(averageScore);
     }
 
-    @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
     @Override
     public String getGoodName() {
         return super.getGoodName();
@@ -89,5 +86,12 @@ public class Pencil extends Stationery {
 
     public PencilType getPencilType() {
         return pencilType;
+    }
+
+    @Override
+    public String toString() {
+        return "Pencil{" +super.toString()+
+                "pencilType=" + pencilType +
+                '}';
     }
 }

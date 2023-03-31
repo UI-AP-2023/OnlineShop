@@ -39,11 +39,6 @@ public class Equipment extends DigitalGoods {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-
-    @Override
     public void setDimensions(double dimensions) {
         super.setDimensions(dimensions);
     }
@@ -100,5 +95,12 @@ public class Equipment extends DigitalGoods {
 
     public int getCapacity() {
         return capacity;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +super.toString()+
+                "capacity=" + capacity +
+                '}';
     }
 }

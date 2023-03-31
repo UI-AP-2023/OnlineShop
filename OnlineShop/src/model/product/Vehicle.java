@@ -39,10 +39,6 @@ public class Vehicle extends Product {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-    @Override
     public String getGoodName() {
         return super.getGoodName();
     }
@@ -79,5 +75,12 @@ public class Vehicle extends Product {
 
     public String getManufacturer() {
         return manufacturer;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +super.toString()+
+                "manufacturer='" + manufacturer + '\'' +
+                '}';
     }
 }

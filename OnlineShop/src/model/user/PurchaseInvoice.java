@@ -9,7 +9,7 @@ public class PurchaseInvoice {
     private final String InvoiceID;
     private final String date;
     private double amountPaid;
-    private ArrayList<Product> purchasedGoods;
+    private final ArrayList<Product> purchasedGoods;
     public PurchaseInvoice(String date,double amountPaid)
     {
         this.InvoiceID=creatID();
@@ -23,8 +23,6 @@ public class PurchaseInvoice {
     }
     public void setAmountPaid(double amountPaid) {this.amountPaid = amountPaid;}
 
-    public void setPurchasedGoods(ArrayList<Product> purchasedGoods) {this.purchasedGoods = purchasedGoods;}
-
     public static int getNumberInvoice() {return numberInvoice;}
 
     public String getInvoiceID() {return InvoiceID;}
@@ -34,4 +32,14 @@ public class PurchaseInvoice {
     public double getAmountPaid() {return amountPaid;}
 
     public ArrayList<Product> getPurchasedGoods() {return purchasedGoods;}
+
+    @Override
+    public String toString() {
+        return "PurchaseInvoice{" +
+                "InvoiceID='" + InvoiceID + '\'' +
+                ", date='" + date + '\'' +
+                ", amountPaid=" + amountPaid +
+                ", purchasedGoods=" + purchasedGoods +
+                '}';
+    }
 }

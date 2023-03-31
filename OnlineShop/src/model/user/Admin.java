@@ -1,15 +1,30 @@
 package model.user;
+import model.product.Car;
+import model.product.Comment;
 import model.product.Product;
 
 import java.util.ArrayList;
 
 public class Admin extends User {
-    private ArrayList<Product> products;
-    //private ArrayList<Request> requests;
-    public Admin(String username, String password, String email, String phoneNumber, String userType) {
+    public static Admin admin ;
+    private final ArrayList<Product> products;
+    private final ArrayList<User> registrationRequest;
+    private final ArrayList<Comment> reviewComments;
+    private final ArrayList<RequestCredit> creditIncreaseRequest;
+    private Admin(String username, String password, String email, String phoneNumber, String userType) {
         super(username, password, email, phoneNumber, userType);
         products=new ArrayList<>();
-        //new arraylist
+        registrationRequest=new ArrayList<>();
+        reviewComments=new ArrayList<>();
+        creditIncreaseRequest=new ArrayList<>();
+
+    }
+    public static Admin getInstance(String username, String password, String email, String phoneNumber, String userType) {
+        if (admin==null)
+        {
+            admin=new Admin(username,password,email,phoneNumber,userType);
+        }
+        return admin;
     }
 
     @Override
@@ -37,9 +52,6 @@ public class Admin extends User {
         super.setUserType(userType);
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
 
     @Override
     public String getUsername() {
@@ -69,5 +81,26 @@ public class Admin extends User {
     public ArrayList<Product> getProducts() {
         return products;
     }
-    //get arraylist
+
+    public ArrayList<User> getRegistrationRequest() {
+        return registrationRequest;
+    }
+
+    public ArrayList<Comment> getReviewComments() {
+        return reviewComments;
+    }
+
+    public ArrayList<RequestCredit> getCreditIncreaseRequest() {
+        return creditIncreaseRequest;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +super.toString()+
+                "products=" + products +
+                ", registrationRequest=" + registrationRequest +
+                ", reviewComments=" + reviewComments +
+                ", creditIncreaseRequest=" + creditIncreaseRequest +
+                '}';
+    }
 }

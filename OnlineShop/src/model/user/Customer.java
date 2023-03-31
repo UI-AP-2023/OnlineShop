@@ -6,14 +6,15 @@ import java.util.ArrayList;
 
 public class Customer extends User {
 
-    private ArrayList<Product> products;
-    private ArrayList<PurchaseInvoice> purchaseInvoices;
+    private final ArrayList<Product> products;
+    private final ArrayList<PurchaseInvoice> purchaseInvoices;
     private double accountCredit;
-    public Customer(String username, String password, String email, String phoneNumber, String userType,double accountCredit) {
+
+    public Customer(String username, String password, String email, String phoneNumber, String userType, double accountCredit) {
         super(username, password, email, phoneNumber, userType);
-        this.accountCredit=accountCredit;
-        products=new ArrayList<>();
-        purchaseInvoices=new ArrayList<>();
+        this.accountCredit = accountCredit;
+        products = new ArrayList<>();
+        purchaseInvoices = new ArrayList<>();
     }
 
     @Override
@@ -42,12 +43,8 @@ public class Customer extends User {
     }
 
     public void setAccountCredit(double accountCredit) {
-        this.accountCredit = accountCredit;
+        this.accountCredit += accountCredit;
     }
-
-    public void setProducts(ArrayList<Product> products) {this.products = products;}
-
-    public void setPurchaseInvoices(ArrayList<PurchaseInvoice> purchaseInvoices) {this.purchaseInvoices = purchaseInvoices;}
 
     @Override
     public String getUsername() {
@@ -78,7 +75,20 @@ public class Customer extends User {
         return accountCredit;
     }
 
-    public ArrayList<Product> getProducts() {return products;}
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
 
-    public ArrayList<PurchaseInvoice> getPurchaseInvoices() {return purchaseInvoices;}
+    public ArrayList<PurchaseInvoice> getPurchaseInvoices() {
+        return purchaseInvoices;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +super.toString()+
+                "products=" + products +
+                ", purchaseInvoices=" + purchaseInvoices +
+                ", accountCredit=" + accountCredit +
+                '}';
+    }
 }

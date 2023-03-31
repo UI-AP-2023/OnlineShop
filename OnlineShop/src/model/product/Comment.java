@@ -7,13 +7,14 @@ public class Comment {
     private String goodID;
     private String commentText;
     private CommentStatus status;
-    private boolean buy;//???
-    public Comment(User user,String goodID,String commentText)
-    {
-        this.user=user;
-        this.goodID=goodID;
-        this.commentText=commentText;
-        this.status=CommentStatus.AWAITING_CONFIRMATION;
+    private boolean buy;
+
+    public Comment(User user, String goodID, String commentText, boolean buy) {
+        this.user = user;
+        this.goodID = goodID;
+        this.commentText = commentText;
+        this.status = CommentStatus.AWAITING_CONFIRMATION;
+        this.buy = buy;
     }
 
     public void setUser(User user) {
@@ -51,8 +52,19 @@ public class Comment {
     public CommentStatus getStatus() {
         return status;
     }
-    public boolean isBuyBuy()
-    {
+
+    public boolean isBuyBuy() {
         return buy;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "user=" + user +
+                ", goodID='" + goodID + '\'' +
+                ", commentText='" + commentText + '\'' +
+                ", status=" + status +
+                ", buy=" + buy +
+                '}';
     }
 }

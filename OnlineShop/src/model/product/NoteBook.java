@@ -50,10 +50,6 @@ public class NoteBook extends Stationery {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-    @Override
     public String getGoodName() {
         return super.getGoodName();
     }
@@ -99,5 +95,13 @@ public class NoteBook extends Stationery {
 
     public String getPageType() {
         return pageType;
+    }
+
+    @Override
+    public String toString() {
+        return "NoteBook{" +super.toString()+
+                "numberOfPages=" + numberOfPages +
+                ", pageType='" + pageType + '\'' +
+                '}';
     }
 }

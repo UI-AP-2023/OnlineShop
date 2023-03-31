@@ -37,11 +37,6 @@ public class DigitalGoods extends Product {
         super.setAverageScore(averageScore);
     }
 
-    @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-
     public void setWeight(double weight) {
         this.weight = weight;
     }
@@ -91,5 +86,13 @@ public class DigitalGoods extends Product {
 
     public double getDimensions() {
         return dimensions;
+    }
+
+    @Override
+    public String toString() {
+        return "DigitalGoods{" +super.toString()+
+                "weight=" + weight +
+                ", dimensions=" + dimensions +
+                '}';
     }
 }

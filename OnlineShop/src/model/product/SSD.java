@@ -49,11 +49,6 @@ public class SSD extends Equipment {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-
-    @Override
     public void setDimensions(double dimensions) {
         super.setDimensions(dimensions);
     }
@@ -119,5 +114,13 @@ public class SSD extends Equipment {
 
     public int getWritingSpeed() {
         return writingSpeed;
+    }
+
+    @Override
+    public String toString() {
+        return "SSD{" +super.toString()+
+                "readingSpeed=" + readingSpeed +
+                ", writingSpeed=" + writingSpeed +
+                '}';
     }
 }

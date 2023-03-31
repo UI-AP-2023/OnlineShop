@@ -45,11 +45,6 @@ public class PersonalComputer extends DigitalGoods {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-
-    @Override
     public void setDimensions(double dimensions) {
         super.setDimensions(dimensions);
     }
@@ -110,5 +105,13 @@ public class PersonalComputer extends DigitalGoods {
 
     public int getRAM() {
         return RAM;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonalComputer{" +super.toString()+
+                "processorModel='" + processorModel + '\'' +
+                ", RAM=" + RAM +
+                '}';
     }
 }

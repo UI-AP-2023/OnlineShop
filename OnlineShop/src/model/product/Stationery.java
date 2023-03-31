@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Stationery extends Product {
     private String country;
-    public Stationery(String goodName, double price, int inventory,String country) {
+
+    public Stationery(String goodName, double price, int inventory, String country) {
         super(goodName, price, inventory, Category.STATIONERY);
-        this.country=country;
+        this.country = country;
     }
 
     public void setCountry(String country) {
@@ -38,10 +39,6 @@ public class Stationery extends Product {
         super.setAverageScore(averageScore);
     }
 
-    @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
     @Override
     public String getGoodName() {
         return super.getGoodName();
@@ -79,5 +76,12 @@ public class Stationery extends Product {
 
     public String getCountry() {
         return country;
+    }
+
+    @Override
+    public String toString() {
+        return "Stationery{" +super.toString()+
+                "country='" + country + '\'' +
+                '}';
     }
 }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Product {
     private static int numberProduct=0;
-    private final String goodID;
+    private String goodID;// not final because we can edit goodName , so it can be edit too....
     private String goodName;
     private double price;
     private int inventory;
     private Category category;
     private double averageScore;
-    private ArrayList<Comment> comments;
+    private final ArrayList<Comment> comments;
 
     public Product(String goodName, double price, int inventory,Category category) {
         this.goodName = goodName;
@@ -36,9 +36,22 @@ public class Product {
         creat.append(++numberProduct);
         return creat.toString();
     }
-
+    private String creatNewID()
+    {
+        String[] ID=getGoodID().split("-");
+        StringBuilder newID=new StringBuilder();
+        newID.append(ID[0]).append("-");
+        for (int i=0;i<3;i++)
+        {
+            newID.append(goodName.charAt(i));
+        }
+        newID.append("-");
+        newID.append(ID[2]).append("-");
+        return newID.toString();
+    }
     public void setGoodName(String goodName) {
         this.goodName = goodName;
+        this.goodID=this.creatNewID();
     }
 
     public void setPrice(double price) {
@@ -49,13 +62,13 @@ public class Product {
         this.inventory = inventory;
     }
 
-    public void setCategory(Category category) {this.category = category;}
-
     public void setAverageScore(double averageScore) {
         this.averageScore = averageScore;
     }
 
-    public void setComments(ArrayList<Comment> comments) {this.comments = comments;}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public static int getNumberProduct() {return numberProduct;}
 
@@ -82,6 +95,19 @@ public class Product {
     }
 
     public ArrayList<Comment> getComments() {return comments;}
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "goodID='" + goodID + '\'' +
+                ", goodName='" + goodName + '\'' +
+                ", price=" + price +
+                ", inventory=" + inventory +
+                ", category=" + category +
+                ", averageScore=" + averageScore +
+                ", comments=" + comments +
+                '}';
+    }
 }
 
 

@@ -44,10 +44,6 @@ public class Pen extends Stationery {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-    @Override
     public String getGoodName() {
         return super.getGoodName();
     }
@@ -89,5 +85,12 @@ public class Pen extends Stationery {
 
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public String toString() {
+        return "Pen{" +super.toString()+
+                "color='" + color + '\'' +
+                '}';
     }
 }

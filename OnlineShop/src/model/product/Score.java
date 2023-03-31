@@ -36,4 +36,13 @@ public class Score {
     public Product getProduct() {
         return product;
     }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "user=" + user +
+                ", score=" + score +
+                ", product=" + product +
+                '}';
+    }
 }

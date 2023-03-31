@@ -46,11 +46,6 @@ public class Food extends Product {
     }
 
     @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
-
-    @Override
     public String getGoodName() {
         return super.getGoodName();
     }
@@ -91,5 +86,13 @@ public class Food extends Product {
 
     public String getExpirationDate() {
         return expirationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +super.toString()+
+                "productionDate='" + productionDate + '\'' +
+                ", expirationDate='" + expirationDate + '\'' +
+                '}';
     }
 }

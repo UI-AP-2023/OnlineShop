@@ -8,13 +8,13 @@ abstract public class User {
     private String email;
     private String phoneNumber;
     private String userType;
-    public User(String username,String password,String email,String phoneNumber,String userType)
-    {
-        this.username=username;
-        this.password=password;
-        this.email=email;
-        this.phoneNumber=phoneNumber;
-        this.userType=userType;
+
+    public User(String username, String password, String email, String phoneNumber, String userType) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userType = userType;
     }
 
     public void setUsername(String username) {
@@ -57,4 +57,14 @@ abstract public class User {
         return userType;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }

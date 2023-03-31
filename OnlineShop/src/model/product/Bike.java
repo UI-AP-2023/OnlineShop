@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Bike extends Vehicle {
     private BikeType bikeType;
-    public Bike(String goodName, double price, int inventory, String manufacturer,String bikeType) {
+
+    public Bike(String goodName, double price, int inventory, String manufacturer, String bikeType) {
         super(goodName, price, inventory, manufacturer);
-        this.bikeType=BikeType.valueOf(bikeType);
+        this.bikeType = BikeType.valueOf(bikeType);
     }
 
     public void setBikeType(BikeType bikeType) {
@@ -43,10 +44,6 @@ public class Bike extends Vehicle {
         super.setAverageScore(averageScore);
     }
 
-    @Override
-    public void setComments(ArrayList<Comment> comments) {
-        super.setComments(comments);
-    }
     @Override
     public String getGoodName() {
         return super.getGoodName();
@@ -89,5 +86,12 @@ public class Bike extends Vehicle {
 
     public BikeType getBikeType() {
         return bikeType;
+    }
+
+    @Override
+    public String toString() {
+        return "Bike{" +super.toString()+
+                "bikeType=" + bikeType +
+                '}';
     }
 }
