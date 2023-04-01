@@ -10,9 +10,8 @@ public class Customer extends User {
     private final ArrayList<PurchaseInvoice> purchaseInvoices;
     private double accountCredit;
 
-    public Customer(String username, String password, String email, String phoneNumber, String userType, double accountCredit) {
+    public Customer(String username, String password, String email, String phoneNumber, String userType) {
         super(username, password, email, phoneNumber, userType);
-        this.accountCredit = accountCredit;
         products = new ArrayList<>();
         purchaseInvoices = new ArrayList<>();
     }
@@ -43,7 +42,7 @@ public class Customer extends User {
     }
 
     public void setAccountCredit(double accountCredit) {
-        this.accountCredit += accountCredit;
+        this.accountCredit = accountCredit;
     }
 
     @Override

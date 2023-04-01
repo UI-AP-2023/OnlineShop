@@ -1,20 +1,21 @@
 package model.product;
 
+import model.user.Customer;
 import model.user.User;
 
 public class Score {
-    private User user;
+    private Customer customer;
     private int score;
     private Product product;
-    public Score(User user,int score,Product product)
+    public Score(Customer customer,int score,Product product)
     {
-        this.user=user;
+        this.customer=customer;
         this.score=score;
         this.product=product;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Customer customer) {
+        this.customer = customer;
     }
 
     public void setScore(int score) {
@@ -25,8 +26,8 @@ public class Score {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getUser() {
+        return customer;
     }
 
     public int getScore() {
@@ -40,7 +41,7 @@ public class Score {
     @Override
     public String toString() {
         return "Score{" +
-                "user=" + user +
+                "customer=" + customer.getUsername() +
                 ", score=" + score +
                 ", product=" + product +
                 '}';

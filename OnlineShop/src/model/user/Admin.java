@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Admin extends User {
     public static Admin admin ;
     private final ArrayList<Product> products;
-    private final ArrayList<User> registrationRequest;
+    private final ArrayList<Customer> registrationRequest;
     private final ArrayList<Comment> reviewComments;
     private final ArrayList<RequestCredit> creditIncreaseRequest;
     private Admin(String username, String password, String email, String phoneNumber, String userType) {
@@ -82,7 +82,7 @@ public class Admin extends User {
         return products;
     }
 
-    public ArrayList<User> getRegistrationRequest() {
+    public ArrayList<Customer> getRegistrationRequest() {
         return registrationRequest;
     }
 
@@ -97,10 +97,6 @@ public class Admin extends User {
     @Override
     public String toString() {
         return "Admin{" +super.toString()+
-                "products=" + products +
-                ", registrationRequest=" + registrationRequest +
-                ", reviewComments=" + reviewComments +
-                ", creditIncreaseRequest=" + creditIncreaseRequest +
                 '}';
     }
 }

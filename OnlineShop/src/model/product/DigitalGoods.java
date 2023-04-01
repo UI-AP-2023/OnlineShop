@@ -2,7 +2,7 @@ package model.product;
 
 import java.util.ArrayList;
 
-public class DigitalGoods extends Product {
+abstract public class DigitalGoods extends Product {
     private double weight;
     private double dimensions;
 

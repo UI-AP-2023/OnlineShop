@@ -2,7 +2,7 @@ package model.product;
 
 import java.util.ArrayList;
 
-public class Product {
+abstract public class Product {
     private static int numberProduct=0;
     private String goodID;// not final because we can edit goodName , so it can be edit too....
     private String goodName;

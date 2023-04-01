@@ -2,7 +2,7 @@ package model.product;
 
 import java.util.ArrayList;
 
-public class Equipment extends DigitalGoods {
+abstract public class Equipment extends DigitalGoods {
     private int capacity;
     public Equipment(String goodName, double price, int inventory, double weight, double dimensions,int capacity) {
         super(goodName, price, inventory, weight, dimensions);

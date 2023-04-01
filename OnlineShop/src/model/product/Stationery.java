@@ -2,7 +2,7 @@ package model.product;
 
 import java.util.ArrayList;
 
-public class Stationery extends Product {
+abstract public class Stationery extends Product {
     private String country;
 
     public Stationery(String goodName, double price, int inventory, String country) {

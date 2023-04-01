@@ -1,24 +1,24 @@
 package model.product;
 
+import model.user.Customer;
 import model.user.User;
 
 public class Comment {
-    private User user;
+    private Customer customer;
     private String goodID;
     private String commentText;
     private CommentStatus status;
     private boolean buy;
 
-    public Comment(User user, String goodID, String commentText, boolean buy) {
-        this.user = user;
+    public Comment(Customer customer, String goodID, String commentText) {
+        this.customer = customer;
         this.goodID = goodID;
         this.commentText = commentText;
         this.status = CommentStatus.AWAITING_CONFIRMATION;
-        this.buy = buy;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Customer customer) {
+        this.customer = customer;
     }
 
     public void setGoodID(String goodID) {
@@ -37,8 +37,8 @@ public class Comment {
         this.buy = buy;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getUser() {
+        return customer;
     }
 
     public String getGoodID() {
@@ -60,8 +60,8 @@ public class Comment {
     @Override
     public String toString() {
         return "Comment{" +
-                "user=" + user +
-                ", goodID='" + goodID + '\'' +
+                "customer=" + customer.getUsername() +
+                ", goodID=" + goodID + '\'' +
                 ", commentText='" + commentText + '\'' +
                 ", status=" + status +
                 ", buy=" + buy +
