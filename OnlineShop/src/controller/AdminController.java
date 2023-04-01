@@ -15,7 +15,7 @@ public class AdminController {
     private final CustomerController customerController = CustomerController.getInstance();
 
     private AdminController() {
-        admin = Admin.getInstance("admin", "admin", "admin1@gmail.com", "09123456789", "admin");
+        admin = Admin.getInstance("admin", "admin", "admin1@gmail.com", "09123456789");
     }
 
     public static AdminController getInstance() {

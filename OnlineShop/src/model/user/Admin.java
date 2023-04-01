@@ -11,18 +11,18 @@ public class Admin extends User {
     private final ArrayList<Customer> registrationRequest;
     private final ArrayList<Comment> reviewComments;
     private final ArrayList<RequestCredit> creditIncreaseRequest;
-    private Admin(String username, String password, String email, String phoneNumber, String userType) {
-        super(username, password, email, phoneNumber, userType);
+    private Admin(String username, String password, String email, String phoneNumber) {
+        super(username, password, email, phoneNumber, "Admin");
         products=new ArrayList<>();
         registrationRequest=new ArrayList<>();
         reviewComments=new ArrayList<>();
         creditIncreaseRequest=new ArrayList<>();
 
     }
-    public static Admin getInstance(String username, String password, String email, String phoneNumber, String userType) {
+    public static Admin getInstance(String username, String password, String email, String phoneNumber) {
         if (admin==null)
         {
-            admin=new Admin(username,password,email,phoneNumber,userType);
+            admin=new Admin(username,password,email,phoneNumber);
         }
         return admin;
     }

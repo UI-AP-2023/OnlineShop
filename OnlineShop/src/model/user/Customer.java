@@ -10,8 +10,8 @@ public class Customer extends User {
     private final ArrayList<PurchaseInvoice> purchaseInvoices;
     private double accountCredit;
 
-    public Customer(String username, String password, String email, String phoneNumber, String userType) {
-        super(username, password, email, phoneNumber, userType);
+    public Customer(String username, String password, String email, String phoneNumber) {
+        super(username, password, email, phoneNumber, "Customer");
         products = new ArrayList<>();
         purchaseInvoices = new ArrayList<>();
     }
