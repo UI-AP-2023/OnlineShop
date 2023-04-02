@@ -19,10 +19,10 @@ public class Admin extends User {
         creditIncreaseRequest=new ArrayList<>();
 
     }
-    public static Admin getInstance(String username, String password, String email, String phoneNumber) {
+    public static Admin getInstance() {
         if (admin==null)
         {
-            admin=new Admin(username,password,email,phoneNumber);
+            admin=new Admin("admin", "admin", "admin1@gmail.com", "09123456789");
         }
         return admin;
     }

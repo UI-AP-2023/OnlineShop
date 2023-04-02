@@ -30,8 +30,8 @@ public class AdminPanel {
         return adminPanel;
     }
 
-    private String command ;
-    private String[] command1 ;
+    private String command;
+    private String[] command1;
 
     public void adminCommand() {
         String exitCommand = null;//??????????????
@@ -48,6 +48,9 @@ public class AdminPanel {
                     break;
                 case "Edit":
                     editProduct();
+                    break;
+                case "Print":
+                    printRequest();
                     break;
                 case "Request":
                     request();
@@ -154,30 +157,55 @@ public class AdminPanel {
         }
     }
 
+    private void printRequest() {
+//        if (Objects.equals(command1[1], "Request")) {
+            switch (command1[2]) {
+                case "Signup":
+                    showSignUp();
+                    break;
+                case "Comment":
+                    showComment();
+                    break;
+                case "IncreaseCredit":
+                    showCredit();
+                    break;
+            }
+       // }
+    }
+
     private void request() {
         switch (command1[1]) {
-            case "SignUp": {
-                showSignUp();
+            case "Signup": {
                 if (Objects.equals(command1[2], "Accept")) {
-                    adminController.acceptCustomer(command1[3]);
+                    boolean check=adminController.acceptCustomer(command1[3]);
+                    if (check)
+                        System.out.println("Accepted successfully");
+                    else
+                        System.out.println("Unsuccessfully");
                 } else if (Objects.equals(command1[2], "Reject")) {
                     adminController.rejectCustomer(command1[3]);
                 }
                 break;
             }
             case "Comment": {
-                showComment();
                 if (Objects.equals(command1[2], "Accept")) {
-                    adminController.acceptComment(command1[3], command1[4]);
+                    boolean check=adminController.acceptComment(command1[3], command1[4]);
+                    if (check)
+                        System.out.println("Accepted successfully");
+                    else
+                        System.out.println("Unsuccessfully");
                 } else if (Objects.equals(command1[2], "Reject")) {
                     adminController.rejectComment(command1[3], command1[4]);
                 }
                 break;
             }
             case "IncreaseCredit": {
-                showCredit();
                 if (Objects.equals(command1[2], "Accept")) {
-                    adminController.acceptCredit(command1[3]);
+                    boolean check=adminController.acceptCredit(command1[3]);
+                    if (check)
+                        System.out.println("Accepted successfully");
+                    else
+                        System.out.println("Unsuccessfully");
                 } else if (Objects.equals(command1[2], "Reject")) {
                     adminController.rejectCredit(command1[3]);
                 }
@@ -203,8 +231,8 @@ public class AdminPanel {
             System.out.println(r.toString());
         }
     }
-    private void printHelp()
-    {
+
+    private void printHelp() {
         System.out.println("         <<<<<<<<<<<<<<<<<<<<<<<<<< Help >>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("Food:             Add GoodName  Price  inventory  productionDate  expirationDate");
         System.out.println("Bike:             Add GoodName  Price  inventory  manufacturer  bikeType");
@@ -219,10 +247,13 @@ public class AdminPanel {
         System.out.println("Edit      GoodName        newName");
         System.out.println("Edit      GoodPrice       newPrice");
         System.out.println("Edit      GoodInventory   newInventory");
-        System.out.println("Request   SignUp");
-        System.out.println("Request   Comment");
-        System.out.println("Request   IncreaseCredit");
-        System.out.println("Show");
+        System.out.println("Print     Request         Signup");
+        System.out.println("Print     Request         Comment");
+        System.out.println("Print     Request         IncreaseCredit");
+        System.out.println("Request   Signup          Accept/Reject         username");
+        System.out.println("Request   Comment         Accept/Reject         username");
+        System.out.println("Request   IncreaseCredit  Accept/Reject         username");
+        System.out.println("ShowUsers");
         System.out.println("Exit");
     }
 }

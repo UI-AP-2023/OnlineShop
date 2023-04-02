@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class Customer extends User {
 
-    private final ArrayList<Product> products;
+    private final ArrayList<Product> cart;//سبد خرید
     private final ArrayList<PurchaseInvoice> purchaseInvoices;
     private double accountCredit;
 
     public Customer(String username, String password, String email, String phoneNumber) {
         super(username, password, email, phoneNumber, "Customer");
-        products = new ArrayList<>();
+        cart = new ArrayList<>();
         purchaseInvoices = new ArrayList<>();
     }
 
@@ -74,8 +74,8 @@ public class Customer extends User {
         return accountCredit;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public ArrayList<Product> getCart() {
+        return cart;
     }
 
     public ArrayList<PurchaseInvoice> getPurchaseInvoices() {
@@ -85,9 +85,7 @@ public class Customer extends User {
     @Override
     public String toString() {
         return "Customer{" +super.toString()+
-                "products=" + products +
-                ", purchaseInvoices=" + purchaseInvoices +
-                ", accountCredit=" + accountCredit +
+                "accountCredit=" + accountCredit +
                 '}';
     }
 }
