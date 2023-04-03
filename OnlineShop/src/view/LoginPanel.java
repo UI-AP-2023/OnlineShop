@@ -40,13 +40,12 @@ public class LoginPanel {
                 if (check)
                 {
                     customerPanel.printMenu(username);
-                    //customerpanel.menu......menu in customer go to another function.....exit in menu comeback here
                     break;
                 }
                 else
                     System.out.println("Not found!");
             }
-        }//break so loop in mainpanel should show.....
+        }
     }
 
     private boolean checkInfo(String username, String password) {

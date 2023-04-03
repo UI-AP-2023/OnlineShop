@@ -67,7 +67,7 @@ public class SignUpPanel {
             if (check)
                 break;
             else
-                System.out.println("This email is not acceptable\nEnter another one");
+                System.out.println("This phoneNumber is not acceptable\nEnter another one");
         }
         Customer customer=new Customer(username, password, email, phoneNumber);
         adminController.getAdmin().getRegistrationRequest().add(customer);

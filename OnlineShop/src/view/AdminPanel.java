@@ -234,15 +234,15 @@ public class AdminPanel {
 
     private void printHelp() {
         System.out.println("         <<<<<<<<<<<<<<<<<<<<<<<<<< Help >>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println("Food:             Add GoodName  Price  inventory  productionDate  expirationDate");
-        System.out.println("Bike:             Add GoodName  Price  inventory  manufacturer  bikeType");
-        System.out.println("Car:              Add GoodName  Price  inventory  manufacturer  engineVolume  automatic");
-        System.out.println("NoteBook:         Add GoodName  price  inventory  country  numberOfPages  pageType");
-        System.out.println("Pen:              Add GoodName  price  inventory  country  color");
-        System.out.println("Pencil:           Add GoodName  price  inventory  country  pencilType");
-        System.out.println("PersonalComputer: Add GoodName  price  inventory  weight  dimensions  processorModel  RAM");
-        System.out.println("FlashMemory:      Add GoodName  price  inventory  weight  dimensions  capacity  USB");
-        System.out.println("SSD:              Add GoodName  price  inventory  weight  dimensions  capacity  readingSpeed  writingSpeed");
+        System.out.println("Add       Food                 GoodName  Price  inventory  productionDate  expirationDate");
+        System.out.println("Add       VEHICLE         Bike GoodName  Price  inventory  manufacturer  bikeType");
+        System.out.println("Add       VEHICLE         Car  GoodName  Price  inventory  manufacturer  engineVolume  automatic");
+        System.out.println("Add       STATIONERY      NoteBook GoodName  price  inventory  country  numberOfPages  pageType");
+        System.out.println("Add       STATIONERY      Pen GoodName  price  inventory  country  color");
+        System.out.println("Add       STATIONERY      Pencil GoodName  price  inventory  country  pencilType");
+        System.out.println("Add       DIGITAL_GOODS   PersonalComputer GoodName  price  inventory  weight  dimensions  processorModel  RAM");
+        System.out.println("Add       DIGITAL_GOODS   FlashMemory GoodName  price  inventory  weight  dimensions  capacity  USB");
+        System.out.println("Add       DIGITAL_GOODS   SSD GoodName  price  inventory  weight  dimensions  capacity  readingSpeed  writingSpeed");
         System.out.println("Remove    GoodId");
         System.out.println("Edit      GoodName        newName");
         System.out.println("Edit      GoodPrice       newPrice");
