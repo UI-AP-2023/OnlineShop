@@ -513,10 +513,13 @@ public class ProductPanel {
     //----------------comment-------------------------------------------------------------------------------------------
     private void addComment(String username, String goodID) {
         if (customerController.check(username)) {
+
             System.out.println("Enter textComment:");
             boolean check = customerController.comment(username, goodID, input.next());
             if (check)
                 System.out.println("successfully");
         }
+        else
+            System.out.println("You should login!");
     }
 }
