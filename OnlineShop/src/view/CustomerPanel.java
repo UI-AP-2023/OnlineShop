@@ -2,6 +2,7 @@ package view;
 
 import controller.CustomerController;
 import model.product.Product;
+import model.user.PurchaseInvoice;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -41,19 +42,20 @@ public class CustomerPanel {
                     editInfoMenu(username);
                     break;
                 case 3:
+                    productPanel.printProductPanel(username);
+                    break;
+                case 4: {
                     showCart(username);
                     break;
-                case 4:
-                    System.out.println(customerController.showCart(username).toString());
-                    break;
+                }
                 case 5: {
                     checkCardInfo();
                     System.out.println("Enter amount of credit increase:");
                     customerController.increaseCredit(username, input.nextDouble());
                     break;
                 }
-                case 6://????????
-
+                case 6:
+                    printInvoices(username);
                     break;
                 case 7:
                     return;
@@ -128,37 +130,66 @@ public class CustomerPanel {
     }
 
     private void showCart(String username) {
-        for (Product p : customerController.showCart(username)) {
-            System.out.println("GoodID:" + p.getGoodID() + "\n" + "GoodName:" + p.getGoodName() + "\n" + "GoodPrice:" + p.getPrice());
-            System.out.println("----------------------");
-        }
-        System.out.println("[1] Delete product                    [2] Buy                  [3] Back to menu");
-        System.out.println("Select number:");
-        switch (input.nextInt()) {
-            case 1: {
-                System.out.println("Enter GoodID:");
-                boolean find = customerController.deleteProduct(input.next(), username);
-                if (find)
-                    System.out.println("Delete successfully");
-                else
-                    System.out.println("Not found!");
-                break;
+        if (customerController.showCart(username).size() != 0) {
+            for (Product p : customerController.showCart(username)) {
+                System.out.println("GoodID:" + p.getGoodID() + "\n" + "GoodName:" + p.getGoodName() + "\n" + "GoodPrice:" + p.getPrice());
+                System.out.println("----------------------");
             }
-            case 2://???????????????????
-            {
-                System.out.println("Enter date:");
-                boolean check=customerController.finalizePurchase(input.next(),username);
-                if (check)
-                    System.out.println("successfully");
-                else
-                    System.out.println("Your Account Credit is not enough!");
-                break;
-            }
+            System.out.println("[1] Delete product                    [2] Buy                  [3] Back to menu");
+            System.out.println("Select number:");
+            switch (input.nextInt()) {
+                case 1: {
+                    System.out.println("Enter GoodID:");
+                    boolean find = customerController.deleteProduct(input.next(), username);
+                    if (find)
+                        System.out.println("Delete successfully");
+                    else
+                        System.out.println("Not found!");
+                    break;
+                }
+                case 2: {
+                    System.out.println("Enter date:");
+                    String date = input.next();
+                    buy(username, date);
+                    break;
+                }
 
-            case 3:
-                break;
+                case 3:
+                    break;
+            }
         }
     }
 
+    private void buy(String username, String date) {
+        PurchaseInvoice purchaseInvoice = customerController.purchaseInvoice(username, date);
+        if (purchaseInvoice != null) {
+            boolean find = customerController.finalizePurchase(username, purchaseInvoice.getAmountPaid(), purchaseInvoice);
+            if (find)
+                printPurchaseInvoice(purchaseInvoice);
+            else
+                System.out.println("Your Account Credit is not enough!");
+        } else
+            System.out.println("Your cart is empty!");
+    }
+
+
+    private void printPurchaseInvoice(PurchaseInvoice purchaseInvoice) {
+        System.out.println("InvoiceID:" + purchaseInvoice.getInvoiceID());
+        System.out.println("Date:" + purchaseInvoice.getDate());
+        System.out.println("Total AmountPay:" + purchaseInvoice.getAmountPaid());
+        for (Product p : purchaseInvoice.getPurchasedGoods()) {
+            System.out.println("GoodID:" + p.getGoodID() + "\n" + "Number:" + p.getNumberGoods());
+            System.out.println("----------------------");
+        }
+    }
+
+    private void printInvoices(String username) {
+        for (PurchaseInvoice p : customerController.printPurchaseInvoices(username)) {
+            System.out.println("InvoiceID:" + p.getInvoiceID());
+            System.out.println("Date:" + p.getDate());
+            System.out.println("Total AmountPay:" + p.getAmountPaid());
+            System.out.println("-------------------------");
+        }
+    }
 
 }

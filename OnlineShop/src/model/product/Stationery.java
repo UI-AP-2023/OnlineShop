@@ -10,10 +10,6 @@ abstract public class Stationery extends Product {
         this.country = country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -27,11 +23,6 @@ abstract public class Stationery extends Product {
     @Override
     public void setInventory(int inventory) {
         super.setInventory(inventory);
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
     }
 
     @Override

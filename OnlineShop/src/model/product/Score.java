@@ -5,9 +5,9 @@ import model.user.User;
 
 public class Score {
     private Customer customer;
-    private int score;
+    private double score;
     private Product product;
-    public Score(Customer customer,int score,Product product)
+    public Score(Customer customer,double score,Product product)
     {
         this.customer=customer;
         this.score=score;
@@ -30,7 +30,7 @@ public class Score {
         return customer;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 

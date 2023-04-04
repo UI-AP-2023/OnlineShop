@@ -9,15 +9,6 @@ public class Pen extends Stationery {
         this.color=color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    @Override
-    public void setCountry(String country) {
-        super.setCountry(country);
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -31,11 +22,6 @@ public class Pen extends Stationery {
     @Override
     public void setInventory(int inventory) {
         super.setInventory(inventory);
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
     }
 
     @Override

@@ -12,14 +12,6 @@ public class Food extends Product {
         this.expirationDate = expirationDate;
     }
 
-    public void setProductionDate(String productionDate) {
-        this.productionDate = productionDate;
-    }
-
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -33,11 +25,6 @@ public class Food extends Product {
     @Override
     public void setInventory(int inventory) {
         super.setInventory(inventory);
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
     }
 
     @Override
@@ -78,10 +65,6 @@ public class Food extends Product {
     @Override
     public ArrayList<Comment> getComments() {
         return super.getComments();
-    }
-
-    public String getProductionDate() {
-        return productionDate;
     }
 
     public String getExpirationDate() {

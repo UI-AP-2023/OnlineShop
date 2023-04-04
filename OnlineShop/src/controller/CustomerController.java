@@ -1,7 +1,8 @@
 package controller;
 
+import model.product.Comment;
 import model.product.Product;
-import model.product.PurchasedProduct;
+import model.product.Score;
 import model.user.*;
 
 import java.util.ArrayList;
@@ -13,7 +14,6 @@ public class CustomerController {
     private static CustomerController customerController;
     private final ProductController productController = ProductController.getInstance();
     private final ArrayList<Customer> customerList;
-    private PurchaseInvoice purchaseInvoice;
     private Admin admin = Admin.getInstance();
 
     private CustomerController() {
@@ -35,12 +35,6 @@ public class CustomerController {
         return customerList;
     }
 
-    private Customer showInfo(String username) {//?????????
-        if (findCustomer(username) != null)
-            return findCustomer(username);
-        else
-            return null;
-    }
 
     public boolean checkUsername(String username) {
         for (Customer c : customerController.getCustomerList()) {
@@ -52,7 +46,7 @@ public class CustomerController {
     }
 
     public boolean checkPatternPassword(String password) {
-        Pattern pattern = Pattern.compile("^\\w{8}$");
+        Pattern pattern = Pattern.compile("\\w{8}$");
         Matcher matcher = pattern.matcher(password);
         return (matcher.find());
     }
@@ -153,15 +147,20 @@ public class CustomerController {
     }
 
     //----------------add ----------------------------------------------------------------------------------------------
-    public boolean addProduct(String goodID, String username) {
+    public boolean check(String username) {
         if (username == null)
             return false;
-        else {
-            customerController.findCustomer(username).getCart().add(productController.findProduct(goodID));
+        else
             return true;
-        }
+
     }
 
+    public void addProduct(String goodID, String username) {
+        customerController.findCustomer(username).getCart().add(productController.findProduct(goodID));
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
     public boolean deleteProduct(String goodID, String username) {
         for (Product p : customerController.showCart(username)) {
             if (Objects.equals(p.getGoodID(), goodID)) {
@@ -171,48 +170,107 @@ public class CustomerController {
         }
         return false;
     }
+    //----------------------purchaseInvoice-----------------------------------------------------------------------------
 
-    private double amountPaid(String username) {
+    public PurchaseInvoice purchaseInvoice(String username, String date) {
         double amountPaid = 0;
         checkInventory(username);
-        purchaseInvoice.getPurchasedGoods().add((PurchasedProduct) findCustomer(username).getCart().get(0));
-        ((PurchasedProduct) findCustomer(username).getCart().get(0)).setProductNumber(((PurchasedProduct) findCustomer(username).getCart().get(0)).getProductNumber() + 1);
-        findCustomer(username).getCart().get(0).setInventory(findCustomer(username).getCart().get(0).getInventory() - 1);
-        amountPaid += findCustomer(username).getCart().get(0).getPrice();
-        for (int i = 1; i < findCustomer(username).getCart().size(); i++) {
-            checkInventory(username);
-            for (int j = 0; j < i; j++) {
+        if (findCustomer(username).getCart().size() > 0) {
+            PurchaseInvoice purchaseInvoice = new PurchaseInvoice(date, amountPaid);
+            purchaseInvoice.getPurchasedGoods().add(findCustomer(username).getCart().get(0));
+            (findCustomer(username).getCart().get(0)).setNumberGoods((findCustomer(username).getCart().get(0).getNumberGoods() + 1));
+            amountPaid += findCustomer(username).getCart().get(0).getPrice();
+            for (int i = 1; i < findCustomer(username).getCart().size(); i++) {
                 checkInventory(username);
-                if (Objects.equals(findCustomer(username).getCart().get(i).getGoodID(), findCustomer(username).getCart().get(j).getGoodID())) {
-                    amountPaid += findCustomer(username).getCart().get(j).getPrice();
-                    findCustomer(username).getCart().get(j).setInventory(findCustomer(username).getCart().get(j).getInventory() + 1);
-                    findCustomer(username).getCart().get(j).setInventory(findCustomer(username).getCart().get(j).getInventory() - 1);
-                } else {
-                    amountPaid += findCustomer(username).getCart().get(j).getPrice();
-                    purchaseInvoice.getPurchasedGoods().add((PurchasedProduct) findCustomer(username).getCart().get(j));
-                    ((PurchasedProduct) findCustomer(username).getCart().get(j)).setProductNumber(((PurchasedProduct) findCustomer(username).getCart().get(j)).getProductNumber() + 1);
-                    findCustomer(username).getCart().get(j).setInventory(findCustomer(username).getCart().get(j).getInventory() - 1);
+                for (int j = 0; j < i; j++) {
+                    checkInventory(username);
+                    if (Objects.equals(findCustomer(username).getCart().get(i).getGoodID(), findCustomer(username).getCart().get(j).getGoodID())) {
+                        amountPaid += findCustomer(username).getCart().get(j).getPrice();
+                        findCustomer(username).getCart().get(j).setNumberGoods(findCustomer(username).getCart().get(j).getNumberGoods() + 1);
+                    } else {
+                        amountPaid += findCustomer(username).getCart().get(j).getPrice();
+                        purchaseInvoice.getPurchasedGoods().add(findCustomer(username).getCart().get(j));
+                        (findCustomer(username).getCart().get(j)).setNumberGoods((findCustomer(username).getCart().get(j)).getNumberGoods() + 1);
+                    }
                 }
             }
-        }
-        return amountPaid;
+
+            purchaseInvoice.setAmountPaid(amountPaid);
+            return purchaseInvoice;
+        } else
+            return null;
     }
 
-    public boolean finalizePurchase(String date, String username) {
-        if (findCustomer(username).getAccountCredit() >= amountPaid(username)) {
-            PurchaseInvoice purchaseInvoice = new PurchaseInvoice(date, amountPaid(username));
+    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice) {
+        if (findCustomer(username).getAccountCredit() >= amountPaid) {
             findCustomer(username).getPurchaseInvoices().add(purchaseInvoice);
-            findCustomer(username).setAccountCredit(findCustomer(username).getAccountCredit()-amountPaid(username));
+            inventoryReduction(username);
+            findCustomer(username).setAccountCredit(findCustomer(username).getAccountCredit() - amountPaid);
             findCustomer(username).getCart().clear();
             return true;
-        }
-        else
+        } else
             return false;//not enough accountCredit
     }
 
+    private void inventoryReduction(String username) {
+        for (Product p : findCustomer(username).getCart()) {
+            p.setInventory(p.getInventory() - 1);
+        }
+    }
 
     private void checkInventory(String username) {
         findCustomer(username).getCart().removeIf(p -> p.getInventory() == 0);
     }
+
+    public ArrayList<PurchaseInvoice> printPurchaseInvoices(String username) {
+        return findCustomer(username).getPurchaseInvoices();
+    }
+
+    //---------------score----------------------------------------------------------------------------------------------
+    public boolean checkBuy(String username, String goodID) {
+        for (PurchaseInvoice p : findCustomer(username).getPurchaseInvoices()) {
+            for (Product s : p.getPurchasedGoods()) {
+                if (Objects.equals(s.getGoodID(), goodID))
+                    return true;//buy good
+            }
+        }
+        return false;//not buy good
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    public boolean score(String username, String goodID, double score) {
+
+        for (Product p : admin.getProducts()) {
+            if (Objects.equals(p.getGoodID(), goodID)) {
+                Score score1 = new Score(findCustomer(username), score, p);
+                p.getScores().add(score1);
+                p.setAverageScore(averageScore(p.getScores()));
+                return true;//successfully
+            }
+        }
+        return false;
+    }
+
+    private double averageScore(ArrayList<Score> scores) {
+        double sum = 0;
+        for (Score s : scores) {
+            sum += s.getScore();
+        }
+        return sum / scores.size();
+    }
+    //-----------comment------------------------------------------------------------------------------------------------
+    public boolean comment(String username, String goodID, String text)
+    {
+        Comment comment=new Comment(findCustomer(username),goodID,text,checkBuy(username,goodID));
+        for (Product p:admin.getProducts())
+        {
+            if (Objects.equals(p.getGoodID(), goodID))
+            {
+                admin.getReviewComments().add(comment);
+                return true;//request successfully
+            }
+        }
+        return false;
+    }
+
 
 }

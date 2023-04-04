@@ -10,23 +10,16 @@ public class Comment {
     private CommentStatus status;
     private boolean buy;
 
-    public Comment(Customer customer, String goodID, String commentText) {
+    public Comment(Customer customer, String goodID, String commentText,boolean buy) {
         this.customer = customer;
         this.goodID = goodID;
         this.commentText = commentText;
         this.status = CommentStatus.AWAITING_CONFIRMATION;
+        this.buy=buy;
     }
 
     public void setUser(Customer customer) {
         this.customer = customer;
-    }
-
-    public void setGoodID(String goodID) {
-        this.goodID = goodID;
-    }
-
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
     }
 
     public void setStatus(CommentStatus status) {//get string then change by value of then send to this

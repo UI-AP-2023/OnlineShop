@@ -251,7 +251,7 @@ public class AdminPanel {
         System.out.println("Print     Request         Comment");
         System.out.println("Print     Request         IncreaseCredit");
         System.out.println("Request   Signup          Accept/Reject         username");
-        System.out.println("Request   Comment         Accept/Reject         username");
+        System.out.println("Request   Comment         Accept/Reject         username          GoodID");
         System.out.println("Request   IncreaseCredit  Accept/Reject         username");
         System.out.println("ShowUsers");
         System.out.println("Exit");

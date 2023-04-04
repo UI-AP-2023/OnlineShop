@@ -10,14 +10,6 @@ public class Bike extends Vehicle {
         this.bikeType = BikeType.valueOf(bikeType);
     }
 
-    public void setBikeType(BikeType bikeType) {
-        this.bikeType = bikeType;
-    }
-
-    @Override
-    public void setManufacturer(String manufacturer) {
-        super.setManufacturer(manufacturer);
-    }
 
     @Override
     public void setGoodName(String goodName) {
@@ -32,11 +24,6 @@ public class Bike extends Vehicle {
     @Override
     public void setInventory(int inventory) {
         super.setInventory(inventory);
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
     }
 
     @Override

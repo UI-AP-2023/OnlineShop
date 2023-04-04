@@ -11,19 +11,6 @@ public class SSD extends Equipment {
         this.writingSpeed=writingSpeed;
     }
 
-    public void setReadingSpeed(int readingSpeed) {
-        this.readingSpeed = readingSpeed;
-    }
-
-    public void setWritingSpeed(int writingSpeed) {
-        this.writingSpeed = writingSpeed;
-    }
-
-    @Override
-    public void setCapacity(int capacity) {
-        super.setCapacity(capacity);
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -39,23 +26,8 @@ public class SSD extends Equipment {
     }
 
     @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
-    }
-
-    @Override
     public void setAverageScore(double averageScore) {
         super.setAverageScore(averageScore);
-    }
-
-    @Override
-    public void setDimensions(double dimensions) {
-        super.setDimensions(dimensions);
-    }
-
-    @Override
-    public void setWeight(double weight) {
-        super.setWeight(weight);
     }
 
     @Override
@@ -91,16 +63,6 @@ public class SSD extends Equipment {
     @Override
     public double getAverageScore() {
         return super.getAverageScore();
-    }
-
-    @Override
-    public double getDimensions() {
-        return super.getDimensions();
-    }
-
-    @Override
-    public double getWeight() {
-        return super.getWeight();
     }
 
     @Override

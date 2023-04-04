@@ -28,21 +28,8 @@ abstract public class DigitalGoods extends Product {
     }
 
     @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
-    }
-
-    @Override
     public void setAverageScore(double averageScore) {
         super.setAverageScore(averageScore);
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public void setDimensions(double dimensions) {
-        this.dimensions = dimensions;
     }
 
     @Override
@@ -80,13 +67,6 @@ abstract public class DigitalGoods extends Product {
         return super.getComments();
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public double getDimensions() {
-        return dimensions;
-    }
 
     @Override
     public String toString() {

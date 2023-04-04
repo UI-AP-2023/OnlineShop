@@ -42,16 +42,6 @@ public class ProductController {
         return available;
     }
 
-    public ArrayList<Product> filterInventoryUnavailable() {
-        ArrayList<Product> unavailable = new ArrayList<>();
-        for (Product p : products) {
-            if (p.getInventory() == 0) {
-                unavailable.add(p);
-            }
-        }
-        return unavailable;
-    }
-
     public ArrayList<Product> filterPrice(double firstPrice, double secondPrice) {
         ArrayList<Product> rangePrice = new ArrayList<>();
         for (Product p : products) {
@@ -260,18 +250,6 @@ public class ProductController {
         return ssds;
     }
 
-    public ArrayList<Product> filterExpirationDate(String expirationDate) {
-        ArrayList<Product> foods = new ArrayList<>();
-        for (Product p : products) {
-            if (p instanceof Food temp) {
-                if (Objects.equals(temp.getExpirationDate(), expirationDate)) {
-                    foods.add(temp);
-                }
-            }
-        }
-        return foods;
-    }
-
     //------------------------------------------------------------------------------------------------------------------
     public ArrayList<Product> showProducts(ArrayList<Product> products, int startIndex) {
         ArrayList<Product> show = new ArrayList<>();
@@ -289,6 +267,19 @@ public class ProductController {
             }
         }
         return null;
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    public boolean checkInventory( String goodID,int number) {
+        if (productController.findProduct(goodID).getInventory() == 0) {
+            return false;//no enough inventory
+        } else {
+            if (number <= productController.findProduct(goodID).getInventory()) {
+                return true;
+            }
+            else
+                return false;//no enough inventory
+        }
+
     }
 
 

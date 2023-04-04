@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 abstract public class Product {
     private static int numberProduct=0;
-    private String goodID;// not final because we can edit goodName , so it can be edit too....
+    private String goodID;
     private String goodName;
     private double price;
     private int inventory;
     private Category category;
     private double averageScore;
     private final ArrayList<Comment> comments;
-
+    private final ArrayList<Score> scores;
+    private int numberGoods=0;
     public Product(String goodName, double price, int inventory,Category category) {
         this.goodName = goodName;
         this.price = price;
@@ -19,6 +20,7 @@ abstract public class Product {
         this.category = category;
         this.goodID=this.creatID();
         comments = new ArrayList<>();
+        scores=new ArrayList<>();
     }
     private String creatID()
     {
@@ -54,6 +56,14 @@ abstract public class Product {
         this.goodID=this.creatNewID();
     }
 
+    public void setNumberGoods(int numberGoods) {
+        this.numberGoods = numberGoods;
+    }
+
+    public int getNumberGoods() {
+        return numberGoods;
+    }
+
     public void setPrice(double price) {
         this.price = price;
     }
@@ -64,10 +74,6 @@ abstract public class Product {
 
     public void setAverageScore(double averageScore) {
         this.averageScore = averageScore;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public static int getNumberProduct() {return numberProduct;}
@@ -95,6 +101,10 @@ abstract public class Product {
     }
 
     public ArrayList<Comment> getComments() {return comments;}
+
+    public ArrayList<Score> getScores() {
+        return scores;
+    }
 
     @Override
     public String toString() {

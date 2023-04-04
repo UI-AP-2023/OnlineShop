@@ -20,11 +20,6 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public void setManufacturer(String manufacturer) {
-        super.setManufacturer(manufacturer);
-    }
-
-    @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
     }
@@ -37,11 +32,6 @@ public class Car extends Vehicle {
     @Override
     public void setInventory(int inventory) {
         super.setInventory(inventory);
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
     }
 
     @Override

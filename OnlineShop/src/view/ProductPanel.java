@@ -6,6 +6,7 @@ import model.product.*;
 import model.user.PurchaseInvoice;
 
 import javax.swing.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 public class ProductPanel {
     private static ProductPanel productPanel;
     private final ProductController productController = ProductController.getInstance();
-    private final CustomerController customerController=CustomerController.getInstance();
+    private final CustomerController customerController = CustomerController.getInstance();
     private Scanner input;
 
     private ProductPanel() {
@@ -44,7 +45,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -57,7 +58,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -75,7 +76,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -92,7 +93,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -110,7 +111,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -130,7 +131,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -149,7 +150,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -166,7 +167,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -300,7 +301,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -313,7 +314,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -331,7 +332,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -348,7 +349,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -366,7 +367,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -387,7 +388,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -406,7 +407,7 @@ public class ProductPanel {
                         System.out.println("Enter GoodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            openProduct(input.next(), username);
+                            openProduct(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -423,7 +424,7 @@ public class ProductPanel {
                         System.out.println("Enter goodID:");
                         String goodID = input.next();
                         if (productController.findProduct(goodID) != null)
-                            search(input.next(), username);
+                            search(goodID, username);
                         else
                             System.out.println("Not found!");
                         break;
@@ -438,27 +439,39 @@ public class ProductPanel {
 
     //---------------search---------------------------------------------------------------------------------------------------------------------------
     private void openProduct(String goodID, String username) {
-        System.out.println("GoodName:" + productController.findProduct(goodID).getGoodName());
-        System.out.println("GoodID:" + productController.findProduct(goodID).getGoodID());
-        System.out.println("Price:" + productController.findProduct(goodID).getPrice());
-        System.out.println("Inventory:" + productController.findProduct(goodID).getInventory());
-        System.out.println("Category:" + productController.findProduct(goodID).getCategory());
-        System.out.println("AverageScore:" + productController.findProduct(goodID).getAverageScore());
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<< Comments >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        for (int i = 0; i < productController.findProduct(goodID).getComments().size(); i++) {
-            System.out.println("Comment Text:" + productController.findProduct(goodID).getComments().get(i).getCommentText());
-            System.out.println("Username:" + productController.findProduct(goodID).getComments().get(i).getUser().getUsername());
-        }
-        System.out.println();
-        System.out.println("[1] Add to cart          [2] Add Comment         [3] Giving Score          [4] Back to menu");
-        int select = input.nextInt();
-        switch (select) {
-            case 1:
-                addToCart(username, goodID);
-                break;
-            //???????????????????????????????
-            case 4:
-                return;
+        while (true) {
+            System.out.println("GoodName:" + productController.findProduct(goodID).getGoodName());
+            System.out.println("GoodID:" + productController.findProduct(goodID).getGoodID());
+            System.out.println("Price:" + productController.findProduct(goodID).getPrice());
+            System.out.println("Inventory:" + productController.findProduct(goodID).getInventory());
+            System.out.println("Category:" + productController.findProduct(goodID).getCategory());
+            System.out.println("AverageScore:" + productController.findProduct(goodID).getAverageScore());
+            System.out.println("<<<<<<<<<<<<<<<<<<<<<<< Comments >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            for (int i = 0; i < productController.findProduct(goodID).getComments().size(); i++) {
+                System.out.println("Comment Text:" + productController.findProduct(goodID).getComments().get(i).getCommentText());
+                System.out.println("Username:" + productController.findProduct(goodID).getComments().get(i).getUser().getUsername());
+                System.out.println("Buy:" + productController.findProduct(goodID).getComments().get(i).isBuyBuy());
+
+            }
+            System.out.println();
+            System.out.println("[1] Add to cart          [2] Add Comment         [3] Giving Score          [4] Back to menu");
+            int select = input.nextInt();
+            switch (select) {
+                case 1: {
+                    addToCart(username, goodID);
+                    break;
+                }
+                case 2: {
+                    addComment(username,goodID);
+                    break;
+                }
+                case 3: {
+                    score(username, goodID);
+                    break;
+                }
+                case 4:
+                    return;
+            }
         }
     }
 
@@ -466,11 +479,44 @@ public class ProductPanel {
         openProduct(goodID, username);
     }
 
+    //------------------------------------------------------------------------------------------------------------------
     private void addToCart(String username, String goodID) {
-        boolean add = customerController.addProduct(goodID, username);
-        if (add)
-            System.out.println("successfully");
-        else
+        if (customerController.check(username)) {
+            System.out.println("Enter number:");
+            int number = input.nextInt();
+            if (productController.checkInventory(goodID, number)) {
+                for (int i = 0; i < number; i++) {
+                    customerController.addProduct(goodID, username);
+                    System.out.println("successfully");
+                }
+            } else
+                System.out.println("No enough inventory!");
+        } else
             System.out.println("Please login in your account!\n");
+    }
+
+    //-------------score------------------------------------------------------------------------------------------------
+    private void score(String username, String goodID) {
+        if (customerController.check(username)) {
+            boolean find = customerController.checkBuy(username, goodID);
+            if (find) {
+                System.out.println("Enter score:");
+                boolean check = customerController.score(username, goodID, input.nextDouble());
+                if (check)
+                    System.out.println("successfully");
+            } else
+                System.out.println("You can not score because you have not buy it!");
+        } else
+            System.out.println("You should login!");
+    }
+
+    //----------------comment-------------------------------------------------------------------------------------------
+    private void addComment(String username, String goodID) {
+        if (customerController.check(username)) {
+            System.out.println("Enter textComment:");
+            boolean check = customerController.comment(username, goodID, input.next());
+            if (check)
+                System.out.println("successfully");
+        }
     }
 }

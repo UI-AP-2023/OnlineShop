@@ -11,19 +11,6 @@ public class NoteBook extends Stationery {
         this.pageType=pageType;
     }
 
-    public void setNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
-    }
-
-    public void setPageType(String pageType) {
-        this.pageType = pageType;
-    }
-
-    @Override
-    public void setCountry(String country) {
-        super.setCountry(country);
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -37,11 +24,6 @@ public class NoteBook extends Stationery {
     @Override
     public void setInventory(int inventory) {
         super.setInventory(inventory);
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
     }
 
     @Override

@@ -9,15 +9,6 @@ public class FlashMemory extends Equipment {
         this.USB=USB;
     }
 
-    public void setUSB(String USB) {
-        this.USB = USB;
-    }
-
-    @Override
-    public void setCapacity(int capacity) {
-        super.setCapacity(capacity);
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -34,23 +25,8 @@ public class FlashMemory extends Equipment {
     }
 
     @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
-    }
-
-    @Override
     public void setAverageScore(double averageScore) {
         super.setAverageScore(averageScore);
-    }
-
-    @Override
-    public void setDimensions(double dimensions) {
-        super.setDimensions(dimensions);
-    }
-
-    @Override
-    public void setWeight(double weight) {
-        super.setWeight(weight);
     }
 
     @Override
@@ -86,16 +62,6 @@ public class FlashMemory extends Equipment {
     @Override
     public double getAverageScore() {
         return super.getAverageScore();
-    }
-
-    @Override
-    public double getDimensions() {
-        return super.getDimensions();
-    }
-
-    @Override
-    public double getWeight() {
-        return super.getWeight();
     }
 
     @Override

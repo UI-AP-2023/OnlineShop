@@ -10,15 +10,6 @@ public class Pencil extends Stationery {
         this.pencilType = PencilType.valueOf(pencilType);
     }
 
-    public void setPencilType(PencilType pencilType) {
-        this.pencilType = pencilType;
-    }
-
-    @Override
-    public void setCountry(String country) {
-        super.setCountry(country);
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -34,10 +25,6 @@ public class Pencil extends Stationery {
         super.setInventory(inventory);
     }
 
-    @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
-    }
 
     @Override
     public void setAverageScore(double averageScore) {

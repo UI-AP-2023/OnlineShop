@@ -1,7 +1,6 @@
 package model.user;
 
 import model.product.Product;
-import model.product.PurchasedProduct;
 
 import java.util.ArrayList;
 
@@ -10,7 +9,7 @@ public class PurchaseInvoice {
     private final String InvoiceID;
     private final String date;
     private double amountPaid;
-    private final ArrayList<PurchasedProduct> purchasedGoods;
+    private final ArrayList<Product> purchasedGoods;
     public PurchaseInvoice(String date,double amountPaid)
     {
         this.InvoiceID=creatID();
@@ -18,10 +17,12 @@ public class PurchaseInvoice {
         this.amountPaid=amountPaid;
         purchasedGoods=new ArrayList<>();
     }
+
     private String creatID()
     {
         return "PI-" + ++numberInvoice;
     }
+
     public void setAmountPaid(double amountPaid) {this.amountPaid = amountPaid;}
 
     public static int getNumberInvoice() {return numberInvoice;}
@@ -32,7 +33,9 @@ public class PurchaseInvoice {
 
     public double getAmountPaid() {return amountPaid;}
 
-    public ArrayList<PurchasedProduct> getPurchasedGoods() {return purchasedGoods;}
+    public ArrayList<Product> getPurchasedGoods() {
+        return purchasedGoods;
+    }
 
     @Override
     public String toString() {

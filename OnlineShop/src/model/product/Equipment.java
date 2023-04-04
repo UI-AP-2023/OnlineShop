@@ -9,10 +9,6 @@ abstract public class Equipment extends DigitalGoods {
         this.capacity=capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -29,23 +25,8 @@ abstract public class Equipment extends DigitalGoods {
     }
 
     @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
-    }
-
-    @Override
     public void setAverageScore(double averageScore) {
         super.setAverageScore(averageScore);
-    }
-
-    @Override
-    public void setDimensions(double dimensions) {
-        super.setDimensions(dimensions);
-    }
-
-    @Override
-    public void setWeight(double weight) {
-        super.setWeight(weight);
     }
 
     @Override
@@ -81,16 +62,6 @@ abstract public class Equipment extends DigitalGoods {
     @Override
     public double getAverageScore() {
         return super.getAverageScore();
-    }
-
-    @Override
-    public double getDimensions() {
-        return super.getDimensions();
-    }
-
-    @Override
-    public double getWeight() {
-        return super.getWeight();
     }
 
     public int getCapacity() {

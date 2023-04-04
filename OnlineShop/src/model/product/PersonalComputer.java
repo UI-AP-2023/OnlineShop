@@ -11,14 +11,6 @@ public class PersonalComputer extends DigitalGoods {
         this.RAM=RAM;
     }
 
-    public void setProcessorModel(String processorModel) {
-        this.processorModel = processorModel;
-    }
-
-    public void setRAM(int RAM) {
-        this.RAM = RAM;
-    }
-
     @Override
     public void setGoodName(String goodName) {
         super.setGoodName(goodName);
@@ -35,23 +27,8 @@ public class PersonalComputer extends DigitalGoods {
     }
 
     @Override
-    public void setCategory(Category category) {
-        super.setCategory(category);
-    }
-
-    @Override
     public void setAverageScore(double averageScore) {
         super.setAverageScore(averageScore);
-    }
-
-    @Override
-    public void setDimensions(double dimensions) {
-        super.setDimensions(dimensions);
-    }
-
-    @Override
-    public void setWeight(double weight) {
-        super.setWeight(weight);
     }
 
     @Override
@@ -87,16 +64,6 @@ public class PersonalComputer extends DigitalGoods {
     @Override
     public double getAverageScore() {
         return super.getAverageScore();
-    }
-
-    @Override
-    public double getDimensions() {
-        return super.getDimensions();
-    }
-
-    @Override
-    public double getWeight() {
-        return super.getWeight();
     }
 
     public String getProcessorModel() {
