@@ -251,7 +251,7 @@ public class CustomerController {
     private Boolean checkDate(String username, String code) {
         for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
             if (Objects.equals(d.getDiscountCode(), code)) {
-                if (d.getDate().isBefore(LocalDate.now()))
+                if (d.getDate().isAfter(LocalDate.now()))
                     return true;
             }
         }
