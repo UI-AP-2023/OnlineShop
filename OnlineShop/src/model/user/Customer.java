@@ -1,5 +1,6 @@
 package model.user;
 
+import model.product.DiscountCode;
 import model.product.Product;
 
 import java.util.ArrayList;
@@ -8,12 +9,14 @@ public class Customer extends User {
 
     private final ArrayList<Product> cart;//سبد خرید
     private final ArrayList<PurchaseInvoice> purchaseInvoices;
+    private final ArrayList<DiscountCode> discountCodes;
     private double accountCredit;
 
     public Customer(String username, String password, String email, String phoneNumber) {
         super(username, password, email, phoneNumber, "Customer");
         cart = new ArrayList<>();
         purchaseInvoices = new ArrayList<>();
+        discountCodes = new ArrayList<>();
     }
 
     @Override
@@ -82,9 +85,11 @@ public class Customer extends User {
         return purchaseInvoices;
     }
 
+    public ArrayList<DiscountCode> getDiscountCodes() {return discountCodes;}
+
     @Override
     public String toString() {
-        return "Customer{" +super.toString()+
+        return "Customer{" + super.toString() +
                 "accountCredit=" + accountCredit +
                 '}';
     }
