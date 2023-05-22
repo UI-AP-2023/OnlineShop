@@ -1,10 +1,12 @@
 package controller;
 
 import model.product.Comment;
+import model.product.DiscountCode;
 import model.product.Product;
 import model.product.Score;
 import model.user.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -201,11 +203,12 @@ public class CustomerController {
             return null;
     }
 
-    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice) {
-        if (findCustomer(username).getAccountCredit() >= amountPaid) {
+    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice, String discountCode) {
+        double newAmountPaid=calculateNewAmount(amountPaid, username, discountCode);//new
+        if (findCustomer(username).getAccountCredit() >= newAmountPaid) {
             findCustomer(username).getPurchaseInvoices().add(purchaseInvoice);
             inventoryReduction(username);
-            findCustomer(username).setAccountCredit(findCustomer(username).getAccountCredit() - amountPaid);
+            findCustomer(username).setAccountCredit(findCustomer(username).getAccountCredit() - newAmountPaid);
             findCustomer(username).getCart().clear();
             return true;
         } else
@@ -226,6 +229,56 @@ public class CustomerController {
         return findCustomer(username).getPurchaseInvoices();
     }
 
+    //---------------discount-------------------------------------------------------------------------------------------
+    private Boolean checkNameDiscountCode(String username, String code) {
+        for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
+            if (Objects.equals(d.getDiscountCode(), code))
+                return true;
+        }
+        return false;//exception!
+    }
+
+    private Boolean checkCapacity(String username, String code) {
+        for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
+            if (Objects.equals(d.getDiscountCode(), code)) {
+                if (d.getCapacity() > 0)
+                    return true;
+            }
+        }
+        return false;//exception!
+    }
+
+    private Boolean checkDate(String username, String code) {
+        for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
+            if (Objects.equals(d.getDiscountCode(), code)) {
+                if (d.getDate().isBefore(LocalDate.now()))
+                    return true;
+            }
+        }
+        return false;//exception!
+    }
+
+    private DiscountCode findDiscountCode(String username, String code) {
+        for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
+            if (Objects.equals(d.getDiscountCode(), code))
+                return d;
+        }
+        return null;//not found!//exception
+    }
+
+    private double calculateNewAmount(double amount, String username, String code) {
+        if (checkNameDiscountCode(username, code) && checkCapacity(username, code) && checkDate(username, code)) {
+            double newAmount;
+            DiscountCode temp = findDiscountCode(username, code);
+            if (temp != null) {
+                newAmount = (amount * (100 - temp.getDiscountPercent())) / 100;
+                return newAmount;
+            }
+        }
+        return -1;//error
+    }
+
+
     //---------------score----------------------------------------------------------------------------------------------
     public boolean checkBuy(String username, String goodID) {
         for (PurchaseInvoice p : findCustomer(username).getPurchaseInvoices()) {
@@ -236,6 +289,7 @@ public class CustomerController {
         }
         return false;//not buy good
     }
+
     //------------------------------------------------------------------------------------------------------------------
     public boolean score(String username, String goodID, double score) {
 
@@ -257,14 +311,12 @@ public class CustomerController {
         }
         return sum / scores.size();
     }
+
     //-----------comment------------------------------------------------------------------------------------------------
-    public boolean comment(String username, String goodID, String text)
-    {
-        Comment comment=new Comment(findCustomer(username),goodID,text,checkBuy(username,goodID));
-        for (Product p:admin.getProducts())
-        {
-            if (Objects.equals(p.getGoodID(), goodID))
-            {
+    public boolean comment(String username, String goodID, String text) {
+        Comment comment = new Comment(findCustomer(username), goodID, text, checkBuy(username, goodID));
+        for (Product p : admin.getProducts()) {
+            if (Objects.equals(p.getGoodID(), goodID)) {
                 admin.getReviewComments().add(comment);
                 return true;//request successfully
             }
