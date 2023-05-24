@@ -204,7 +204,7 @@ public class CustomerController {
     }
 
     public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice, String discountCode) {
-        double newAmountPaid=calculateNewAmount(amountPaid, username, discountCode);//new
+        double newAmountPaid = calculateNewAmount(amountPaid, username, discountCode);//new
         if (findCustomer(username).getAccountCredit() >= newAmountPaid) {
             findCustomer(username).getPurchaseInvoices().add(purchaseInvoice);
             inventoryReduction(username);
@@ -322,6 +322,14 @@ public class CustomerController {
             }
         }
         return false;
+    }
+
+    //---------show discountCodes---------------------------------------------------------------------------------------
+    public ArrayList<DiscountCode> showCodes(String username) {
+        if (findCustomer(username) != null) {
+            return Objects.requireNonNull(findCustomer(username)).getDiscountCodes();
+        }
+        return null;//not find user
     }
 
 

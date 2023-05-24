@@ -1,6 +1,7 @@
 package view;
 
 import controller.CustomerController;
+import model.product.DiscountCode;
 import model.product.Product;
 import model.user.PurchaseInvoice;
 
@@ -31,7 +32,7 @@ public class CustomerPanel {
         while (true) {
             System.out.println("[1] Show Information        [2] Edit Information             [3] Product Panel");
             System.out.println("[4] Show Carts              [5] Increase AccountCredit       [6] Show Invoices");
-            System.out.println("[7] Exit");
+            System.out.println("[7] Show DiscountCodes      [8] Exit");
             System.out.println("Select number:");
             int select = input.nextInt();
             switch (select) {
@@ -58,6 +59,9 @@ public class CustomerPanel {
                     printInvoices(username);
                     break;
                 case 7:
+                    showCart(username);
+                    break;
+                case 8:
                     return;
             }
         }
@@ -150,7 +154,8 @@ public class CustomerPanel {
                 case 2: {
                     System.out.println("Enter date:");
                     String date = input.next();
-                    buy(username, date);
+                    String code = input.next();
+                    buy(username, date, code);
                     break;
                 }
 
@@ -160,10 +165,10 @@ public class CustomerPanel {
         }
     }
 
-    private void buy(String username, String date) {
+    private void buy(String username, String date, String code) {
         PurchaseInvoice purchaseInvoice = customerController.purchaseInvoice(username, date);
         if (purchaseInvoice != null) {
-            boolean find = customerController.finalizePurchase(username, purchaseInvoice.getAmountPaid(), purchaseInvoice);
+            boolean find = customerController.finalizePurchase(username, purchaseInvoice.getAmountPaid(), purchaseInvoice, code);
             if (find)
                 printPurchaseInvoice(purchaseInvoice);
             else
@@ -192,4 +197,12 @@ public class CustomerPanel {
         }
     }
 
+    private void showDiscountCodes(String username) {
+        if (customerController.showCodes(username).size() != 0) {
+            for (DiscountCode d : customerController.showCodes(username)) {
+                System.out.println("DiscountCode:" + d.getDiscountCode() + "\n" + "Percent:" + d.getDiscountPercent() + "\n" + "Capacity:" + d.getCapacity() + "\n" + "Date:" + d.getDate());
+                System.out.println("----------------------");
+            }
+        }
+    }
 }
