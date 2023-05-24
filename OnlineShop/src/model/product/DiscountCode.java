@@ -29,7 +29,7 @@ public class DiscountCode {
     }
 
     public DiscountCode(double discountPercent, int capacity, String date, String discountType) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         this.date = LocalDate.parse(date, formatter);
         this.discountPercent = discountPercent;
         this.capacity = capacity;
