@@ -9,6 +9,7 @@ import model.user.User;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.concurrent.Phaser;
 
 public class AdminPanel {
     private static AdminPanel adminPanel;
@@ -54,6 +55,9 @@ public class AdminPanel {
                     break;
                 case "Request":
                     request();
+                    break;
+                case "Discount":
+                    discount();
                     break;
                 case "ShowUsers":
                     show();
@@ -159,25 +163,25 @@ public class AdminPanel {
 
     private void printRequest() {
 //        if (Objects.equals(command1[1], "Request")) {
-            switch (command1[2]) {
-                case "Signup":
-                    showSignUp();
-                    break;
-                case "Comment":
-                    showComment();
-                    break;
-                case "IncreaseCredit":
-                    showCredit();
-                    break;
-            }
-       // }
+        switch (command1[2]) {
+            case "Signup":
+                showSignUp();
+                break;
+            case "Comment":
+                showComment();
+                break;
+            case "IncreaseCredit":
+                showCredit();
+                break;
+        }
+        // }
     }
 
     private void request() {
         switch (command1[1]) {
             case "Signup": {
                 if (Objects.equals(command1[2], "Accept")) {
-                    boolean check=adminController.acceptCustomer(command1[3]);
+                    boolean check = adminController.acceptCustomer(command1[3]);
                     if (check)
                         System.out.println("Accepted successfully");
                     else
@@ -189,7 +193,7 @@ public class AdminPanel {
             }
             case "Comment": {
                 if (Objects.equals(command1[2], "Accept")) {
-                    boolean check=adminController.acceptComment(command1[3], command1[4]);
+                    boolean check = adminController.acceptComment(command1[3], command1[4]);
                     if (check)
                         System.out.println("Accepted successfully");
                     else
@@ -201,13 +205,42 @@ public class AdminPanel {
             }
             case "IncreaseCredit": {
                 if (Objects.equals(command1[2], "Accept")) {
-                    boolean check=adminController.acceptCredit(command1[3]);
+                    boolean check = adminController.acceptCredit(command1[3]);
                     if (check)
                         System.out.println("Accepted successfully");
                     else
                         System.out.println("Unsuccessfully");
                 } else if (Objects.equals(command1[2], "Reject")) {
                     adminController.rejectCredit(command1[3]);
+                }
+                break;
+            }
+        }
+    }
+
+    private void discount() {
+        switch (command1[1]) {
+            case "Welcome": {
+                boolean check = adminController.welcomeDiscount(Double.parseDouble(command1[2]), Integer.parseInt(command1[3]), command1[4]);
+                if (check)
+                    System.out.println("Successfully");
+                else
+                    System.out.println("Unsuccessfully");
+                break;
+            }
+            case "Encouragement": {
+                if (Objects.equals(command1[2], "More than 200")) {
+                    boolean check = adminController.encouragementDiscount1(Double.parseDouble(command1[3]), Integer.parseInt(command1[4]), command1[5]);
+                    if (check)
+                        System.out.println("Successfully");
+                    else
+                        System.out.println("Unsuccessfully");
+                } else if (Objects.equals(command1[2], "Max")) {
+                    boolean check = adminController.encouragementDiscount2(Double.parseDouble(command1[3]), Integer.parseInt(command1[4]), command1[5]);
+                    if (check)
+                        System.out.println("Successfully");
+                    else
+                        System.out.println("Unsuccessfully");
                 }
                 break;
             }
@@ -253,6 +286,9 @@ public class AdminPanel {
         System.out.println("Request   Signup          Accept/Reject         username");
         System.out.println("Request   Comment         Accept/Reject         username          GoodID");
         System.out.println("Request   IncreaseCredit  Accept/Reject         username");
+        System.out.println("Discount  Welcome         discountPercent       capacity          date");
+        System.out.println("Discount  Encouragement   More than 200         discountPercent   capacity         date");
+        System.out.println("Discount  Encouragement   Max                   discountPercent   capacity         date");
         System.out.println("ShowUsers");
         System.out.println("Exit");
     }
