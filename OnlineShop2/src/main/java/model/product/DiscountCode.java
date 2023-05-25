@@ -5,19 +5,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class DiscountCode {
-    private static int numberDiscountCode;
     private double discountPercent;
     private LocalDate date;
     private int capacity;
     private String discountCode;
     private DiscountType discountType;
 
-    public static int getNumberDiscountCode() {
-        return numberDiscountCode;
-    }
-
-    public static void setNumberDiscountCode(int numberDiscountCode) {
-        DiscountCode.numberDiscountCode = numberDiscountCode;
+    public DiscountCode(double discountPercent, int capacity, String date, String discountType) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        this.date = LocalDate.parse(date, formatter);
+        this.discountPercent = discountPercent;
+        this.capacity = capacity;
+        this.discountType = DiscountType.valueOf(discountType);
+        this.discountCode = creatDiscountCode();
     }
 
     public DiscountType getDiscountType() {
@@ -26,15 +26,6 @@ public class DiscountCode {
 
     public void setDiscountType(DiscountType discountType) {
         this.discountType = discountType;
-    }
-
-    public DiscountCode(double discountPercent, int capacity, String date, String discountType) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        this.date = LocalDate.parse(date, formatter);
-        this.discountPercent = discountPercent;
-        this.capacity = capacity;
-        this.discountCode=creatDiscountCode();
-        this.discountType = DiscountType.valueOf(discountType);
     }
 
     public double getDiscountPercent() {
@@ -66,12 +57,11 @@ public class DiscountCode {
     }
 
     public void setDiscountCode(String discountCode) {
-        this.discountCode = discountCode;
+        this.discountCode = creatDiscountCode();
     }
 
     private String creatDiscountCode() {
         StringBuilder code = new StringBuilder();
-
         if (this.discountType == DiscountType.Welcome) {
             code.append("Welcome-");
             Random random = new Random();

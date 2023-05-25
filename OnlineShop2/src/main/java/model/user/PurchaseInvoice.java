@@ -5,33 +5,51 @@ import model.product.Product;
 import java.util.ArrayList;
 
 public class PurchaseInvoice {
-    private static int numberInvoice=0;
+    private static int numberInvoice = 0;
     private final String InvoiceID;
     private final String date;
     private double amountPaid;
+    private double discountPrice;
     private final ArrayList<Product> purchasedGoods;
-    public PurchaseInvoice(String date,double amountPaid)
-    {
-        this.InvoiceID=creatID();
-        this.date=date;
-        this.amountPaid=amountPaid;
-        purchasedGoods=new ArrayList<>();
+
+    public PurchaseInvoice(String date, double amountPaid) {
+        this.InvoiceID = creatID();
+        this.date = date;
+        this.amountPaid = amountPaid;
+        purchasedGoods = new ArrayList<>();
     }
 
-    private String creatID()
-    {
+    private String creatID() {
         return "PI-" + ++numberInvoice;
     }
 
-    public void setAmountPaid(double amountPaid) {this.amountPaid = amountPaid;}
+    public double getDiscountPrice() {
+        return discountPrice;
+    }
 
-    public static int getNumberInvoice() {return numberInvoice;}
+    public void setDiscountPrice(double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
 
-    public String getInvoiceID() {return InvoiceID;}
+    public void setAmountPaid(double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
 
-    public String getDate() {return date;}
+    public static int getNumberInvoice() {
+        return numberInvoice;
+    }
 
-    public double getAmountPaid() {return amountPaid;}
+    public String getInvoiceID() {
+        return InvoiceID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
 
     public ArrayList<Product> getPurchasedGoods() {
         return purchasedGoods;
