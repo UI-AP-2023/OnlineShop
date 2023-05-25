@@ -203,12 +203,19 @@ public class CustomerController {
             return null;
     }
 
-    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice, String discountCode) {
-        double newAmountPaid = calculateNewAmount(amountPaid, username, discountCode);//new
-        if (findCustomer(username).getAccountCredit() >= newAmountPaid) {
+    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice, ArrayList<String> discountCodes) {
+        double newAmountPaid;
+        for (String s:discountCodes) {
+            newAmountPaid=calculateNewAmount(amountPaid, username, s);
+            if (newAmountPaid!=0)
+            {amountPaid=newAmountPaid;}
+            //else amountPaid not changed!
+        }
+        purchaseInvoice.setDiscountPrice(amountPaid);
+        if (findCustomer(username).getAccountCredit() >= amountPaid) {
             findCustomer(username).getPurchaseInvoices().add(purchaseInvoice);
             inventoryReduction(username);
-            findCustomer(username).setAccountCredit(findCustomer(username).getAccountCredit() - newAmountPaid);
+            findCustomer(username).setAccountCredit(findCustomer(username).getAccountCredit() - amountPaid);
             findCustomer(username).getCart().clear();
             return true;
         } else
@@ -275,7 +282,7 @@ public class CustomerController {
                 return newAmount;
             }
         }
-        return -1;//error
+        return 0;//error
     }
 
 
