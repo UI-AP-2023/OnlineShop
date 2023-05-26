@@ -2,9 +2,9 @@ package model.product;
 
 import java.util.ArrayList;
 
-public class Pencil extends Stationery {
+public class Pencil extends Stationery implements Discount{
     private PencilType pencilType;
-
+    private int discountPercent;
     public Pencil(String goodName, double price, int inventory, String country, String pencilType) {
         super(goodName, price, inventory, country);
         this.pencilType = PencilType.valueOf(pencilType);
@@ -80,5 +80,15 @@ public class Pencil extends Stationery {
         return "Pencil{" +super.toString()+
                 "pencilType=" + pencilType +
                 '}';
+    }
+
+    @Override
+    public void add(int percent) {
+        discountPercent=percent;
+    }
+
+    @Override
+    public void delete() {
+        discountPercent=0;
     }
 }

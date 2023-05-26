@@ -85,4 +85,14 @@ public class SSD extends Equipment {
                 ", writingSpeed=" + writingSpeed +
                 '}';
     }
+
+    @Override
+    public void add(int percent) {
+        setDiscountPercent(percent);
+    }
+
+    @Override
+    public void delete() {
+        setDiscountPercent(0);
+    }
 }

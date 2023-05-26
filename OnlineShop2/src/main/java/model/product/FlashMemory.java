@@ -79,4 +79,14 @@ public class FlashMemory extends Equipment {
                 "USB='" + USB + '\'' +
                 '}';
     }
+
+    @Override
+    public void add(int percent) {
+        setDiscountPercent(percent);
+    }
+
+    @Override
+    public void delete() {
+        setDiscountPercent(0);
+    }
 }

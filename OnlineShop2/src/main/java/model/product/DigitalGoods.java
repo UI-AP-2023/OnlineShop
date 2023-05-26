@@ -2,9 +2,18 @@ package model.product;
 
 import java.util.ArrayList;
 
-abstract public class DigitalGoods extends Product {
+abstract public class DigitalGoods extends Product implements Discount {
     private double weight;
     private double dimensions;
+    private int discountPercent;
+
+    public int getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(int discountPercent) {
+        this.discountPercent = discountPercent;
+    }
 
     public DigitalGoods(String goodName, double price, int inventory, double weight, double dimensions) {
         super(goodName, price, inventory, Category.DIGITAL_GOODS);

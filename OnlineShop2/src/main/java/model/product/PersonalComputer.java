@@ -5,10 +5,11 @@ import java.util.ArrayList;
 public class PersonalComputer extends DigitalGoods {
     private String processorModel;
     private int RAM;
-    public PersonalComputer(String goodName, double price, int inventory, double weight, double dimensions,String processorModel,int RAM) {
+
+    public PersonalComputer(String goodName, double price, int inventory, double weight, double dimensions, String processorModel, int RAM) {
         super(goodName, price, inventory, weight, dimensions);
-        this.processorModel=processorModel;
-        this.RAM=RAM;
+        this.processorModel = processorModel;
+        this.RAM = RAM;
     }
 
     @Override
@@ -76,9 +77,19 @@ public class PersonalComputer extends DigitalGoods {
 
     @Override
     public String toString() {
-        return "PersonalComputer{" +super.toString()+
+        return "PersonalComputer{" + super.toString() +
                 "processorModel='" + processorModel + '\'' +
                 ", RAM=" + RAM +
                 '}';
+    }
+
+    @Override
+    public void add(int percent) {
+        setDiscountPercent(percent);
+    }
+
+    @Override
+    public void delete() {
+        setDiscountPercent(0);
     }
 }

@@ -2,11 +2,13 @@ package model.product;
 
 import java.util.ArrayList;
 
-public class Pen extends Stationery {
+public class Pen extends Stationery implements Discount {
     private String color;
-    public Pen(String goodName, double price, int inventory, String country,String color) {
+    private int discountPercent;
+
+    public Pen(String goodName, double price, int inventory, String country, String color) {
         super(goodName, price, inventory, country);
-        this.color=color;
+        this.color = color;
     }
 
     @Override
@@ -75,8 +77,22 @@ public class Pen extends Stationery {
 
     @Override
     public String toString() {
-        return "Pen{" +super.toString()+
+        return "Pen{" + super.toString() +
                 "color='" + color + '\'' +
                 '}';
+    }
+
+    @Override
+    public void add(int percent) {
+        discountPercent = percent;
+    }
+
+    public int getDiscountPercent() {
+        return discountPercent;
+    }
+
+    @Override
+    public void delete() {
+        discountPercent = 0;
     }
 }
