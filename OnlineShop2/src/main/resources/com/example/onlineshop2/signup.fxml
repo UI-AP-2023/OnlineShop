@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshop2.SignupController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="606.0" prefWidth="294.0" style="-fx-background-color: #C4AEAD;" />
@@ -37,7 +36,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="phoneNumberField" layoutX="483.0" layoutY="408.0" prefHeight="46.0" prefWidth="200.0" promptText="PhoneNumber">
+      <TextField fx:id="phoneNumberField" layoutX="483.0" layoutY="408.0" prefHeight="46.0" prefWidth="200.0" promptText="09*********">
          <font>
             <Font size="14.0" />
          </font>
@@ -57,7 +56,7 @@
             <Font name="Bookman Old Style Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="signupButton" layoutX="505.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#signupButton" prefHeight="39.0" prefWidth="75.0" style="-fx-background-radius: 20;" text="Signup">
+      <Button fx:id="signupButton" layoutX="505.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#signupButton" prefHeight="39.0" prefWidth="75.0" style="-fx-background-radius: 15; -fx-background-color: #000000;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

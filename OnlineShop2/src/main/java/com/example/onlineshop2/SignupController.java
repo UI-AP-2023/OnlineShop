@@ -104,6 +104,10 @@ public class SignupController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        usernameField.clear();
+        passwordField.clear();
+        phoneNumberField.clear();
+        emailField.clear();
     }
 
     @Override

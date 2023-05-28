@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.user.Customer;
+import model.user.PurchaseInvoice;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,11 +46,6 @@ public class LoginController implements Initializable {
         if (Objects.equals(usernameField.getText(), "admin") && Objects.equals(passwordField.getText(), "admin"))
         {
             adminPanel.adminCommand();
-//            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("first-page.fxml")));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(parent);
-//            stage.setScene(scene);
-//            stage.show();
         }
         else{
             if(customerController.checkInfo(usernameField.getText(),passwordField.getText()))
@@ -69,6 +65,8 @@ public class LoginController implements Initializable {
                 error.show();
             }
         }
+        usernameField.clear();
+        passwordField.clear();
     }
 
     @FXML
