@@ -79,4 +79,13 @@ public class DiscountCode {
         return code.toString();
     }
 
+    @Override
+    public String toString() {
+        return
+                "DiscountPercent:" + discountPercent +"\n"+
+                "Date=" + date +"\n"+
+                "Capacity=" + capacity +"\n"+
+                "DiscountCode=" + discountCode + "\n"+
+                "DiscountType=" + discountType +"\n";
+    }
 }
