@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #C4AEAD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshop2.DiscountCodeController">
+   <children>
+      <ImageView fx:id="homeImage" fitHeight="46.0" fitWidth="37.0" layoutX="749.0" layoutY="549.0" onMouseClicked="#homeImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/25694.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="discountViewList" editable="true" layoutX="59.0" layoutY="79.0" prefHeight="441.0" prefWidth="254.0" />
+      <Label fx:id="infoLabel" layoutX="374.0" layoutY="196.0" prefHeight="196.0" prefWidth="342.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
