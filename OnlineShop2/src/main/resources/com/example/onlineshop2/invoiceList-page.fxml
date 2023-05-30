@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #C4AEAD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshop2.InvoiceListController">
+   <children>
+      <ImageView fx:id="homeImage" fitHeight="36.0" fitWidth="45.0" layoutX="754.0" layoutY="560.0" onMouseClicked="#homeImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/25694.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="infoLabel" layoutX="378.0" layoutY="198.0" prefHeight="217.0" prefWidth="347.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <ListView fx:id="invoiceViewList" editable="true" layoutX="63.0" layoutY="60.0" prefHeight="486.0" prefWidth="258.0" />
+   </children>
+</AnchorPane>
