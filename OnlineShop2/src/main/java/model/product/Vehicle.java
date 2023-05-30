@@ -70,8 +70,7 @@ abstract public class Vehicle extends Product {
 
     @Override
     public String toString() {
-        return "Vehicle{" +super.toString()+
-                "manufacturer='" + manufacturer + '\'' +
-                '}';
+        return super.toString()+
+                "Manufacturer:" + manufacturer + "\n" +"\n";
     }
 }

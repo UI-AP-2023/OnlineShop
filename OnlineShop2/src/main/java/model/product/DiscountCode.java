@@ -82,10 +82,10 @@ public class DiscountCode {
     @Override
     public String toString() {
         return
-                "DiscountPercent:" + discountPercent +"\n"+
-                "Date=" + date +"\n"+
-                "Capacity=" + capacity +"\n"+
-                "DiscountCode=" + discountCode + "\n"+
-                "DiscountType=" + discountType +"\n";
+                "DiscountPercent:" + discountPercent +"\n"+"\n"+
+                "Date=" + date +"\n"+"\n"+
+                "Capacity=" + capacity +"\n"+"\n"+
+                "DiscountCode=" + discountCode + "\n"+"\n"+
+                "DiscountType=" + discountType;
     }
 }

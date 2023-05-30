@@ -113,24 +113,34 @@ abstract public class Product implements Comparable<Product> {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "goodID='" + goodID + '\'' +
-                ", goodName='" + goodName + '\'' +
-                ", price=" + price +
-                ", inventory=" + inventory +
-                ", category=" + category +
-                ", averageScore=" + averageScore +
-                ", comments=" + comments +
-                '}';
+        StringBuilder information=new StringBuilder();
+           information.append(  "GoodID:" + goodID + "\n" +"\n"+
+                "GoodName:'" + goodName + "\n" +"\n"+
+                "Price:" + price +"\n" +"\n"+
+                "Inventory:" + inventory +"\n" +"\n"+
+                "Category:" + category +"\n" +"\n"+
+                "AverageScore:" + averageScore+"\n" +"\n");
+           information.append("------------------<< Comments >>----------------"+ "\n");
+           if (comments.size()!=0) {
+               for (int i = 0; i < comments.size(); i++) {
+                   information.append("Text Comment:" + comments.get(i).getCommentText() + "\n" +
+                           "Customer Username:" + comments.get(i).getUser().getUsername() + "\n" +
+                           "Buy:" + comments.get(i).isBuyBuy()+"\n" +"\n");
+               }
+           }
+           else
+               information.append("No Comment yet!"+ "\n");
+           information.append("-----------------------------------------------------"+ "\n"+"\n");
+           return information.toString();
     }
 
     @Override
     public int compareTo(Product p) {
         int compareName = this.goodName.compareTo(p.goodName);
         if (compareName > 0) {
-            return -1;
-        } else if (compareName < 0) {
             return 1;
+        } else if (compareName < 0) {
+            return -1;
         } else {
             if (this.averageScore > p.averageScore)
                 return -1;
@@ -138,11 +148,11 @@ abstract public class Product implements Comparable<Product> {
                 return 1;
             else {
                 if (this.price > p.price)
-                    return -1;
-                else if (this.price < p.price)
                     return 1;
+                else if (this.price < p.price)
+                    return -1;
                 else {
-                    return Integer.compare(this.inventory, p.inventory);
+                    return (-1)*Integer.compare(this.inventory, p.inventory);
                 }
             }
         }
@@ -150,3 +160,4 @@ abstract public class Product implements Comparable<Product> {
 }
 
 
+//STAT-Can-3

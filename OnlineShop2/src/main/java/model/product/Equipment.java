@@ -70,8 +70,7 @@ abstract public class Equipment extends DigitalGoods implements Discount {
 
     @Override
     public String toString() {
-        return "Equipment{" +super.toString()+
-                "capacity=" + capacity +
-                '}';
+        return super.toString()+
+                "Capacity:" + capacity +"\n"+"\n";
     }
 }

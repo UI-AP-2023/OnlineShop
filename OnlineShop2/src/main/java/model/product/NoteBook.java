@@ -81,9 +81,8 @@ public class NoteBook extends Stationery {
 
     @Override
     public String toString() {
-        return "NoteBook{" +super.toString()+
-                "numberOfPages=" + numberOfPages +
-                ", pageType='" + pageType + '\'' +
-                '}';
+        return super.toString()+
+                "NumberOfPages:" + numberOfPages +"\n"+"\n"+
+                "PageType:" + pageType +"\n"+"\n";
     }
 }

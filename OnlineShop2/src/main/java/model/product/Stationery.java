@@ -71,8 +71,7 @@ abstract public class Stationery extends Product {
 
     @Override
     public String toString() {
-        return "Stationery{" +super.toString()+
-                "country='" + country + '\'' +
-                '}';
+        return super.toString()+
+                "Country:" + country + "\n" +"\n";
     }
 }

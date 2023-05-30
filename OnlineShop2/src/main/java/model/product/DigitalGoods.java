@@ -79,9 +79,9 @@ abstract public class DigitalGoods extends Product implements Discount {
 
     @Override
     public String toString() {
-        return "DigitalGoods{" +super.toString()+
-                "weight=" + weight +
-                ", dimensions=" + dimensions +
-                '}';
+        return super.toString()+
+                "Weight:" + weight +"\n"+"\n"+
+                "Dimensions:" + dimensions +"\n"+"\n"
+                +"Discount Percent:" + discountPercent +"\n"+"\n";
     }
 }

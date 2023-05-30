@@ -80,10 +80,9 @@ public class SSD extends Equipment {
 
     @Override
     public String toString() {
-        return "SSD{" +super.toString()+
-                "readingSpeed=" + readingSpeed +
-                ", writingSpeed=" + writingSpeed +
-                '}';
+        return super.toString()+
+                "ReadingSpeed:" + readingSpeed +"\n"+"\n"+
+                "WritingSpeed:" + writingSpeed +"\n"+"\n";
     }
 
     @Override

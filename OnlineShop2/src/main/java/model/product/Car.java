@@ -89,9 +89,8 @@ public class Car extends Vehicle {
 
     @Override
     public String toString() {
-        return "Car{" +super.toString()+
-                "engineVolume=" + engineVolume +
-                ", automatic=" + automatic +
-                '}';
+        return super.toString()+
+                "EngineVolume:" + engineVolume +"\n"+"\n"+
+                "Automatic:" + automatic +"\n"+"\n";
     }
 }

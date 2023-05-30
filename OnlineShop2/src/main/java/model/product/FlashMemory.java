@@ -75,9 +75,8 @@ public class FlashMemory extends Equipment {
 
     @Override
     public String toString() {
-        return "FlashMemory{" +super.toString()+
-                "USB='" + USB + '\'' +
-                '}';
+        return super.toString()+
+                "USB:" + USB + "\n"+"\n";
     }
 
     @Override

@@ -77,10 +77,9 @@ public class PersonalComputer extends DigitalGoods {
 
     @Override
     public String toString() {
-        return "PersonalComputer{" + super.toString() +
-                "processorModel='" + processorModel + '\'' +
-                ", RAM=" + RAM +
-                '}';
+        return super.toString() +
+                "ProcessorModel:" + processorModel + "\n" +"\n"+
+                "RAM:" + RAM +"\n"+"\n";
     }
 
     @Override
