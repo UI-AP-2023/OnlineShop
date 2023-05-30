@@ -1,5 +1,6 @@
 package controller;
 
+import exception.*;
 import model.product.Comment;
 import model.product.DiscountCode;
 import model.product.Product;
@@ -38,40 +39,56 @@ public class CustomerController {
     }
 
 
-    public boolean checkUsername(String username) {
+    public boolean checkUsername(String username) throws DuplicateUsername {
         for (Customer c : customerController.getCustomerList()) {
             if (Objects.equals(c.getUsername(), username)) {
-                return true;//change username
+                throw new DuplicateUsername();//change username
             }
         }
         return false;// accept username
     }
 
-    public boolean checkPatternPassword(String password) {
+    public boolean checkPatternPassword(String password) throws InvalidPassword {
         Pattern pattern = Pattern.compile("\\w{8}$");
         Matcher matcher = pattern.matcher(password);
-        return (matcher.find());
+        if (matcher.find())
+            return true;
+        throw new InvalidPassword();
     }
 
-    public boolean checkPatternEmail(String email) {
+    public boolean checkPatternEmail(String email) throws InvalidEmail {
         Pattern pattern = Pattern.compile("^\\w+(@)(\\D)+\\.com$");
         Matcher matcher = pattern.matcher(email);
-        return (matcher.find());
+        if (matcher.find())
+            return true;
+        throw new InvalidEmail();
     }
 
-    public boolean checkEmail(String email) {
+    public boolean checkEmail(String email) throws DuplicateEmail {
         for (Customer c : customerController.getCustomerList()) {
             if (Objects.equals(c.getEmail(), email)) {
-                return true;//change email
+                throw new DuplicateEmail();//change email
             }
         }
-        return false;//accept email
+        return true;//accept email
     }
 
-    public boolean checkPatternPhoneNumber(String phoneNumber) {
+    public boolean checkPatternPhoneNumber(String phoneNumber) throws InvalidPhoneNumber {
         Pattern pattern = Pattern.compile("^09\\d{9}$");
         Matcher matcher = pattern.matcher(phoneNumber);
-        return (matcher.find());
+        if (matcher.find())
+            return true;
+        throw new InvalidPhoneNumber();
+    }
+
+    public boolean checkInfo(String username, String password) {
+        for (Customer c : getCustomerList()) {
+            if (Objects.equals(c.getUsername(), username)) {
+                if (Objects.equals(c.getPassword(), password))
+                    return true;
+            }
+        }
+        return false;
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -85,36 +102,40 @@ public class CustomerController {
     }
 
     //-------------edit info--------------------------------------------------------------------------------------------
-    public boolean editPassword(String username, String newPassword) {
+    public boolean editPassword(String username, String newPassword) throws InvalidPassword {
         if (findCustomer(username) != null) {
             if (checkPatternPassword(newPassword)) {
                 Objects.requireNonNull(findCustomer(username)).setPassword(newPassword);
                 return true;//successfully
             }
         }
-        return false;//error
+        throw new InvalidPassword();
     }
 
-    public boolean editPhoneNumber(String username, String newPhoneNumber) {
+    public boolean editPhoneNumber(String username, String newPhoneNumber) throws InvalidPhoneNumber {
         if (findCustomer(username) != null) {
             if (checkPatternPhoneNumber(newPhoneNumber)) {
                 Objects.requireNonNull(findCustomer(username)).setPhoneNumber(newPhoneNumber);
                 return true;//successfully
             }
         }
-        return false;//error
+        throw new InvalidPhoneNumber();
     }
 
-    public boolean editEmail(String username, String newEmail) {
+    public boolean editEmail(String username, String newEmail) throws InvalidEmail, DuplicateEmail {
         if (findCustomer(username) != null) {
             if (checkPatternEmail(newEmail)) {
                 if (checkEmail(newEmail)) {
                     Objects.requireNonNull(findCustomer(username)).setEmail(newEmail);
                     return true;//successfully
                 }
-            }
+                else
+                    throw new DuplicateEmail();
+
+            } else
+                throw new InvalidEmail();
         }
-        return false;//error
+        return false;
     }
 
     //----------increase credit-----------------------------------------------------------------------------------------
@@ -123,22 +144,28 @@ public class CustomerController {
         admin.getCreditIncreaseRequest().add(requestCredit);
     }
 
-    public boolean checkCardNumber(String number) {
+    public boolean checkCardNumber(String number) throws InvalidCardNumber {
         Pattern pattern = Pattern.compile("^\\d{16}$");
         Matcher matcher = pattern.matcher(number);
-        return (matcher.find());
+        if (matcher.find())
+            return true;
+        throw new InvalidCardNumber();
     }
 
-    public boolean checkPasswordCard(String password) {
+    public boolean checkPasswordCard(String password) throws InvalidPasswordCard {
         Pattern pattern = Pattern.compile("^\\d{8}$");
         Matcher matcher = pattern.matcher(password);
-        return (matcher.find());
+        if (matcher.find())
+            return true;
+        throw new InvalidPasswordCard();
     }
 
-    public boolean checkCVV2(String SVV2) {
+    public boolean checkCVV2(String SVV2) throws InvalidCVV2 {
         Pattern pattern = Pattern.compile("^\\d{3,4}$");
         Matcher matcher = pattern.matcher(SVV2);
-        return (matcher.find());
+        if (matcher.find())
+            return true;
+        throw new InvalidCVV2();
     }
 
     //-----------show carts---------------------------------------------------------------------------------------------
@@ -203,12 +230,14 @@ public class CustomerController {
             return null;
     }
 
-    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice, ArrayList<String> discountCodes) {
+    public boolean finalizePurchase(String username, double amountPaid, PurchaseInvoice purchaseInvoice, ArrayList<String> discountCodes) throws ExpiryDate, InvalidCapacity, unavailableCode {
         double newAmountPaid;
-        for (String s:discountCodes) {
-            newAmountPaid=calculateNewAmount(amountPaid, username, s);
-            if (newAmountPaid!=0)
-            {amountPaid=newAmountPaid;}
+        for (String s : discountCodes) {
+            newAmountPaid = calculateNewAmount(amountPaid, username, s);
+            if (newAmountPaid != 0) {
+                amountPaid = newAmountPaid;
+                findDiscountCode(username,s).setCapacity(findDiscountCode(username,s).getCapacity()-1);
+            }
             //else amountPaid not changed!
         }
         purchaseInvoice.setDiscountPrice(amountPaid);
@@ -237,43 +266,43 @@ public class CustomerController {
     }
 
     //---------------discount-------------------------------------------------------------------------------------------
-    private Boolean checkNameDiscountCode(String username, String code) {
+    private Boolean checkNameDiscountCode(String username, String code) throws unavailableCode {
         for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
             if (Objects.equals(d.getDiscountCode(), code))
                 return true;
         }
-        return false;//exception!
+        throw new unavailableCode();
     }
 
-    private Boolean checkCapacity(String username, String code) {
+    private Boolean checkCapacity(String username, String code) throws InvalidCapacity {
         for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
             if (Objects.equals(d.getDiscountCode(), code)) {
                 if (d.getCapacity() > 0)
                     return true;
             }
         }
-        return false;//exception!
+        throw new InvalidCapacity();
     }
 
-    private Boolean checkDate(String username, String code) {
+    private Boolean checkDate(String username, String code) throws ExpiryDate {
         for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
             if (Objects.equals(d.getDiscountCode(), code)) {
                 if (d.getDate().isAfter(LocalDate.now()))
                     return true;
             }
         }
-        return false;//exception!
+        throw new ExpiryDate();
     }
 
-    private DiscountCode findDiscountCode(String username, String code) {
+    private DiscountCode findDiscountCode(String username, String code) throws unavailableCode {
         for (DiscountCode d : findCustomer(username).getDiscountCodes()) {
             if (Objects.equals(d.getDiscountCode(), code))
                 return d;
         }
-        return null;//not found!//exception
+        throw new unavailableCode();
     }
 
-    private double calculateNewAmount(double amount, String username, String code) {
+    private double calculateNewAmount(double amount, String username, String code) throws unavailableCode, InvalidCapacity, ExpiryDate {
         if (checkNameDiscountCode(username, code) && checkCapacity(username, code) && checkDate(username, code)) {
             double newAmount;
             DiscountCode temp = findDiscountCode(username, code);
