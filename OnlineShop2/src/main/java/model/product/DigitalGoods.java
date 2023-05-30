@@ -6,6 +6,11 @@ abstract public class DigitalGoods extends Product implements Discount {
     private double weight;
     private double dimensions;
     private int discountPercent;
+    private double priceWithDiscount;
+
+    public double getPriceWithDiscount() {
+        return priceWithDiscount;
+    }
 
     public int getDiscountPercent() {
         return discountPercent;
@@ -82,6 +87,7 @@ abstract public class DigitalGoods extends Product implements Discount {
         return super.toString()+
                 "Weight:" + weight +"\n"+"\n"+
                 "Dimensions:" + dimensions +"\n"+"\n"
-                +"Discount Percent:" + discountPercent +"\n"+"\n";
+                +"Discount Percent:" + discountPercent +"\n"+"\n"
+                +"Price Without Discount:" + getPrice() +"\n"+"\n";
     }
 }

@@ -85,10 +85,12 @@ public class PersonalComputer extends DigitalGoods {
     @Override
     public void add(int percent) {
         setDiscountPercent(percent);
+        setPrice((getPrice()*(100-percent))/100);
     }
 
     @Override
     public void delete() {
+        setPrice((100*(getPrice()))/(100-getDiscountPercent()));
         setDiscountPercent(0);
     }
 }

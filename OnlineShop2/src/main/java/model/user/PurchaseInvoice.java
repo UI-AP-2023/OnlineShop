@@ -57,11 +57,9 @@ public class PurchaseInvoice {
 
     @Override
     public String toString() {
-        return "PurchaseInvoice{" +
-                "InvoiceID='" + InvoiceID + '\'' +
-                ", date='" + date + '\'' +
-                ", amountPaid=" + amountPaid +
-                ", purchasedGoods=" + purchasedGoods +
-                '}';
+        return "InvoiceID:" + InvoiceID + "\n" +"\n" +
+                "Date:" + date +  "\n" +"\n" +
+                "Total AmountPay:" + amountPaid + "\n" +"\n" +
+                "Total AmountPay with Discount:" + discountPrice;
     }
 }

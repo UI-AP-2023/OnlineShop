@@ -52,7 +52,7 @@ public class InvoiceListController implements Initializable {
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 currentChoice = invoiceViewList.getSelectionModel().getSelectedItem();
                 int index = 0;
-                for (int i = 0; i < LoginController.customer.getDiscountCodes().size(); i++) {
+                for (int i = 0; i < LoginController.customer.getPurchaseInvoices().size(); i++) {
                     if (LoginController.customer.getPurchaseInvoices().get(i).getInvoiceID().equals(currentChoice)) {
                         index = i;
                         break;

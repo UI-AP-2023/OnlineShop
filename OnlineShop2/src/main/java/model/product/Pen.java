@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Pen extends Stationery implements Discount {
     private String color;
     private int discountPercent;
+    private double priceWithDiscount;
+
+    public double getPriceWithDiscount() {
+        return priceWithDiscount;
+    }
 
     public Pen(String goodName, double price, int inventory, String country, String color) {
         super(goodName, price, inventory, country);
@@ -79,12 +84,14 @@ public class Pen extends Stationery implements Discount {
     public String toString() {
         return super.toString() +
                 "Color:" + color +"\n"+"\n"
-                +"Discount Percent:" + discountPercent +"\n"+"\n";
+                +"Discount Percent:" + discountPercent +"\n"+"\n"
+                +"Price Without Discount:" + getPrice() +"\n"+"\n";
     }
 
     @Override
     public void add(int percent) {
         discountPercent = percent;
+        setPrice((getPrice()*(100-percent))/100);
     }
 
     public int getDiscountPercent() {
@@ -93,6 +100,7 @@ public class Pen extends Stationery implements Discount {
 
     @Override
     public void delete() {
+        setPrice((100*(getPrice()))/(100-getDiscountPercent()));
         discountPercent = 0;
     }
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Pencil extends Stationery implements Discount{
     private PencilType pencilType;
     private int discountPercent;
+
     public Pencil(String goodName, double price, int inventory, String country, String pencilType) {
         super(goodName, price, inventory, country);
         this.pencilType = PencilType.valueOf(pencilType);
@@ -79,16 +80,23 @@ public class Pencil extends Stationery implements Discount{
     public String toString() {
         return super.toString()+
                 "PencilType:" + pencilType +"\n"+"\n"
-                +"Discount Percent:" + discountPercent +"\n"+"\n";
+                +"Discount Percent:" + discountPercent +"\n"+"\n"
+                +"Price Without Discount:" + getPrice() +"\n"+"\n";
     }
 
     @Override
     public void add(int percent) {
         discountPercent=percent;
+        setPrice((getPrice()*(100-percent))/100);
+    }
+
+    public int getDiscountPercent() {
+        return discountPercent;
     }
 
     @Override
     public void delete() {
+        setPrice((100*(getPrice()))/(100-getDiscountPercent()));
         discountPercent=0;
     }
 }
