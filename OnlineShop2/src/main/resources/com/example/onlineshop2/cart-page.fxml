@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshop2.CartController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="303.0" style="-fx-background-color: #C4AEAD;">
+         <children>
+            <Button fx:id="buyButton" alignment="CENTER" layoutX="114.0" layoutY="531.0" mnemonicParsing="false" onMouseClicked="#buyButton" prefHeight="39.0" prefWidth="76.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Buy" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteProductButton" alignment="CENTER" layoutX="72.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#deleteProductButton" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Delete Product" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="productIDField" layoutX="72.0" layoutY="191.0" prefHeight="39.0" prefWidth="155.0" style="-fx-background-radius: 20;" />
+            <Label layoutX="9.0" layoutY="142.0" prefHeight="55.0" prefWidth="291.0" text="Enter Product ID you want to delete from your cart?">
+               <font>
+                  <Font name="Tw Cen MT Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="saveButton" alignment="CENTER" layoutX="72.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#saveButton" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="discountCodeField" layoutX="72.0" layoutY="365.0" prefHeight="39.0" prefWidth="155.0" style="-fx-background-radius: 20;" />
+            <Label alignment="CENTER" layoutX="9.0" layoutY="310.0" prefHeight="55.0" prefWidth="291.0" text=" Enter your Discount codes?">
+               <font>
+                  <Font name="Tw Cen MT Bold Italic" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ListView fx:id="cartViewList" editable="true" layoutX="428.0" layoutY="72.0" prefHeight="464.0" prefWidth="269.0" />
+      <ImageView fx:id="homeImage" fitHeight="39.0" fitWidth="36.0" layoutX="755.0" layoutY="554.0" onMouseClicked="#homeImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/25694.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

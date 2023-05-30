@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshop2.invoiceController">
+   <children>
+      <Pane layoutX="85.0" layoutY="80.0" prefHeight="456.0" prefWidth="630.0" style="-fx-background-color: #b49d9d; -fx-background-radius: 10;">
+         <effect>
+            <InnerShadow choke="0.24" height="79.49" radius="39.245" width="79.49">
+               <color>
+                  <Color red="0.5157894492149353" green="0.4489278793334961" blue="0.4489278793334961" />
+               </color>
+               <input>
+                  <DropShadow />
+               </input>
+            </InnerShadow>
+         </effect>
+         <children>
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="151.0" layoutY="122.0" prefHeight="212.0" prefWidth="325.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="190.0" layoutY="23.0" prefHeight="41.0" prefWidth="237.0" text="Purchase Invoice">
+               <font>
+                  <Font name="Forte" size="17.0" />
+               </font>
+            </Label>
+            <Line endX="112.79998779296875" endY="-1.52587890625E-5" layoutX="300.0" layoutY="68.0" startX="-100.0" strokeWidth="2.0" />
+            <Label alignment="CENTER" layoutX="116.0" layoutY="393.0" prefHeight="41.0" prefWidth="403.0" text="Thank you for purchasing☺">
+               <font>
+                  <Font name="Freestyle Script" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fx:id="homeImage" fitHeight="41.0" fitWidth="49.0" layoutX="753.0" layoutY="552.0" onMouseClicked="#homeImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/25694.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
