@@ -14,6 +14,7 @@ public class AdminController {
     private static AdminController adminController;
     private final Admin admin;
     private final CustomerController customerController = CustomerController.getInstance();
+    private final ProductController productController=ProductController.getInstance();
 
     private AdminController() {
         admin = Admin.getInstance();
@@ -224,7 +225,7 @@ public class AdminController {
         return allUser;
     }
 
-    //-------------discount code-----------------------------------------------------------------------------------------
+    //-------------discount code for customer---------------------------------------------------------------------------
     //welcome
     public Boolean welcomeDiscount(double discountPercent, int capacity, String date) {
         for (Customer c : customerController.getCustomerList()) {
@@ -274,5 +275,51 @@ public class AdminController {
         }
         return sum;
     }
-    //-------------------------------------------------------------------------------------------------------------------------
+    //-------------Discount codes for products--------------------------------------------------------------------------
+    public int discountProducts(String productID,int percent)
+    {
+        Product product=productController.findProduct(productID);
+        if (product!=null)
+        {
+            if (product instanceof Pen temp)
+            {
+                temp.add(percent);
+            }
+            else if (product instanceof Pencil temp)
+            {
+                temp.add(percent);
+            }
+            else if (product instanceof DigitalGoods temp)
+            {
+                temp.add(percent);
+            }
+            else
+                return -1;//discount is for special products
+            return 0;//successfully
+        }
+        return 1;//not found product
+    }
+
+    public int removeDiscount(String productID)
+    {
+        Product product=productController.findProduct(productID);
+        if (product!=null)
+        {
+            if (product instanceof Pen temp)
+            {
+                temp.delete();
+            }
+            else if (product instanceof Pencil temp)
+            {
+                temp.delete();
+            }
+            else if (product instanceof DigitalGoods temp)
+            {
+                temp.delete();
+            }
+            return 0;//successfully
+        }
+        return 1;//not found product
+    }
+
 }
