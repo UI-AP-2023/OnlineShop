@@ -220,7 +220,7 @@
                <children>
                   <ImageView fx:id="foodImage" fitHeight="127.0" fitWidth="158.0" layoutX="4.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/دانلود-وکتور-مجموعه-محصولات-غذایی.jpg" />
+                        <Image url="@../images/1.jpg" />
                      </image>
                   </ImageView>
                   <Button fx:id="foodButton" layoutX="47.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#foodButton" style="-fx-background-color: #ffffff;" text="Food">
