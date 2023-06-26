@@ -424,6 +424,21 @@
                   <TextField fx:id="flashField" layoutX="162.0" layoutY="197.0" prefHeight="34.0" prefWidth="128.0" style="-fx-background-color: #ffffff;" />
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="automaticPane" layoutX="3.0" layoutY="10.0" prefHeight="428.0" prefWidth="458.0" style="-fx-background-color: #b49d9d;" visible="false">
+               <children>
+                  <Button fx:id="saveAutomaticButton" layoutX="200.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#saveAutomaticButton" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Save" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" layoutX="104.0" layoutY="143.0" prefHeight="36.0" prefWidth="244.0" text="Automatic Car or not?">
+                     <font>
+                        <Font name="Lucida Fax Demibold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="automaticField" layoutX="162.0" layoutY="197.0" prefHeight="34.0" prefWidth="128.0" style="-fx-background-color: #ffffff;" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

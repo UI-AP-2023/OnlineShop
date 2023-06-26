@@ -5,6 +5,7 @@ import model.product.DiscountCode;
 import model.product.Product;
 import model.user.PurchaseInvoice;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -59,7 +60,7 @@ public class CustomerPanel {
                     printInvoices(username);
                     break;
                 case 7:
-                    showCart(username);
+                    showDiscountCodes(username);
                     break;
                 case 8:
                     return;
@@ -154,8 +155,14 @@ public class CustomerPanel {
                 case 2: {
                     System.out.println("Enter date:");
                     String date = input.next();
-                    String code = input.next();
-                    buy(username, date, code);
+                    System.out.println("Enter number of discount codes:");
+                    int numberCode=input.nextInt();
+                    ArrayList<String > discountCodes=new ArrayList<>();
+                    for (int i=0;i<numberCode;i++) {
+                        System.out.println("Enter your discount code:");
+                        discountCodes.add(input.next());
+                    }
+                    buy(username, date, discountCodes);
                     break;
                 }
 
@@ -165,10 +172,10 @@ public class CustomerPanel {
         }
     }
 
-    private void buy(String username, String date, String code) {
+    private void buy(String username, String date, ArrayList<String > discountCodes) {
         PurchaseInvoice purchaseInvoice = customerController.purchaseInvoice(username, date);
         if (purchaseInvoice != null) {
-            boolean find = customerController.finalizePurchase(username, purchaseInvoice.getAmountPaid(), purchaseInvoice, code);
+            boolean find = customerController.finalizePurchase(username, purchaseInvoice.getAmountPaid(), purchaseInvoice, discountCodes);
             if (find)
                 printPurchaseInvoice(purchaseInvoice);
             else
@@ -182,6 +189,7 @@ public class CustomerPanel {
         System.out.println("InvoiceID:" + purchaseInvoice.getInvoiceID());
         System.out.println("Date:" + purchaseInvoice.getDate());
         System.out.println("Total AmountPay:" + purchaseInvoice.getAmountPaid());
+        System.out.println("Total AmountPay with Discount:" + purchaseInvoice.getDiscountPrice());
         for (Product p : purchaseInvoice.getPurchasedGoods()) {
             System.out.println("GoodID:" + p.getGoodID() + "\n" + "Number:" + p.getNumberGoods());
             System.out.println("----------------------");

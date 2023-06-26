@@ -33,8 +33,9 @@ public class DiscountCode {
         this.date = LocalDate.parse(date, formatter);
         this.discountPercent = discountPercent;
         this.capacity = capacity;
-        this.discountCode=creatDiscountCode();
         this.discountType = DiscountType.valueOf(discountType);
+        this.discountCode=creatDiscountCode();
+
     }
 
     public double getDiscountPercent() {

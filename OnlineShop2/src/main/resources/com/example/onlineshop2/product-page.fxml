@@ -21,7 +21,7 @@
             <Font name="Forte" size="26.0" />
          </font>
       </Label>
-      <ListView fx:id="productViewList" editable="true" layoutX="55.0" layoutY="101.0" prefHeight="461.0" prefWidth="271.0">
+      <ListView fx:id="productViewList" editable="true" fixedCellSize="30.0" layoutX="55.0" layoutY="101.0" prefHeight="461.0" prefWidth="271.0">
          <effect>
             <DropShadow />
          </effect>
