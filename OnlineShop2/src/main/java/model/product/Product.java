@@ -130,7 +130,7 @@ abstract public class Product implements Comparable<Product> {
            }
            else
                information.append("No Comment yet!"+ "\n");
-           information.append("-----------------------------------------------------"+ "\n"+"\n");
+           information.append("-------------------------------------------------------"+ "\n"+"\n");
            return information.toString();
     }
 
@@ -160,4 +160,3 @@ abstract public class Product implements Comparable<Product> {
 }
 
 
-//STAT-Can-3

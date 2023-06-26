@@ -9,6 +9,16 @@ public class PurchaseInvoice {
     private final String InvoiceID;
     private final String date;
     private double amountPaid;
+    private double discountPrice;
+
+    public double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
     private final ArrayList<Product> purchasedGoods;
     public PurchaseInvoice(String date,double amountPaid)
     {
