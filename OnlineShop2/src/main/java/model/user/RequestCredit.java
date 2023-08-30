@@ -1,9 +1,5 @@
 package model.user;
 
-import model.product.Comment;
-
-import java.util.ArrayList;
-
 public class RequestCredit {
     private String username;
     private double increaseCredit;

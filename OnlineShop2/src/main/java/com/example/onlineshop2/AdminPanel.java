@@ -2,7 +2,6 @@ package com.example.onlineshop2;
 
 import controller.AdminController;
 import model.product.Comment;
-import model.product.Product;
 import model.user.RequestCredit;
 import model.user.User;
 

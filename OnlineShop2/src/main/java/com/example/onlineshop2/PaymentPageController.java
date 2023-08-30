@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.user.Customer;
 
 import java.io.IOException;
 import java.net.URL;

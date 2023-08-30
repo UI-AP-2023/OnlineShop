@@ -1,7 +1,6 @@
 package model.product;
 
 import model.user.Customer;
-import model.user.User;
 
 public class Score {
     private Customer customer;

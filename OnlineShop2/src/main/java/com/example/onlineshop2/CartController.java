@@ -4,8 +4,6 @@ import controller.CustomerController;
 import exception.ExpiryDate;
 import exception.InvalidCapacity;
 import exception.unavailableCode;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,9 +18,6 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
-import model.product.Discount;
-import model.product.Pen;
-import model.product.Product;
 import model.user.PurchaseInvoice;
 
 import java.io.IOException;

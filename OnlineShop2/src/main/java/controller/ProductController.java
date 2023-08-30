@@ -2,7 +2,6 @@ package controller;
 
 import model.product.*;
 import model.user.Admin;
-import model.user.Customer;
 
 import java.util.ArrayList;
 import java.util.Objects;

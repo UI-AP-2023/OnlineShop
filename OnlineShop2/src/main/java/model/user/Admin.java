@@ -1,5 +1,4 @@
 package model.user;
-import model.product.Car;
 import model.product.Comment;
 import model.product.Product;
 
